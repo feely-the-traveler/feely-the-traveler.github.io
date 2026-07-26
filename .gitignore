@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local scratch / leftover root chapter (use chapter/ch*)
+/ch1/
+assets/img/_mask_feely.py

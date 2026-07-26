@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEELY pin calibrator — click 1→8</title>
+<style>
+  :root {
+    --bg: #0b0b10;
+    --panel: #14141c;
+    --line: #2a2a36;
+    --ink: #f2f0ec;
+    --muted: #8a8796;
+    --accent: #f2762a;
+    --pin: #ff4d4d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.5 system-ui, sans-serif;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+  .stage-wrap {
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .stage {
+    position: relative;
+    max-width: min(92vw, 720px);
+    cursor: crosshair;
+    user-select: none;
+    border: 1px solid var(--line);
+  }
+  .stage img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+  }
+  .pin {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border-radius: 50%;
+    background: var(--pin);
+    color: #fff;
+    font: 700 11px/22px system-ui, sans-serif;
+    text-align: center;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--pin);
+    pointer-events: none;
+  }
+  .side {
+    border-left: 1px solid var(--line);
+    background: var(--panel);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  h1 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+  .hint {
+    margin: 0;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  .hint strong { color: var(--accent); }
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    flex: 1;
+  }
+  .list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: .86rem;
+  }
+  .list li.active {
+    border-color: var(--accent);
+    background: rgba(242, 118, 42, .08);
+  }
+  .list li.done { opacity: .85; }
+  .list .n {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #2a2a36;
+    color: #fff;
+    font: 700 11px/22px system-ui;
+    text-align: center;
+  }
+  .list li.done .n { background: var(--pin); }
+  .list li.active .n { background: var(--accent); }
+  .coords {
+    margin: 0;
+    font: 12px/1.45 ui-monospace, Consolas, monospace;
+    white-space: pre-wrap;
+    background: #0b0b10;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 120px;
+    color: #cfcbd8;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  button {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: #1b1b26;
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font: 600 13px system-ui;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #111;
+  }
+  @media (max-width: 900px) {
+    body { grid-template-columns: 1fr; }
+    .side { border-left: 0; border-top: 1px solid var(--line); }
+    .stage-wrap { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage-wrap">
+    <div class="stage" id="stage" title="Click to place the next pin">
+      <img id="img" src="../assets/img/feely_design.png" alt="FEELY design">
+    </div>
+  </div>
+
+  <aside class="side">
+    <h1>Pin calibrator</h1>
+    <p class="hint" id="hint">이미지를 클릭해서 <strong>1번</strong> 위치를 찍어주세요.</p>
+
+    <ul class="list" id="list"></ul>
+
+    <pre class="coords" id="out">아직 없음 — 1→8 클릭</pre>
+
+    <div class="actions">
+      <button type="button" id="undo">Undo</button>
+      <button type="button" id="reset">Reset</button>
+      <button type="button" class="primary" id="copy">Copy results</button>
+    </div>
+  </aside>
+
+<script>
+const LABELS = [
+  '01 Helmet',
+  '02 Head',
+  '03 Ear Sensors',
+  '04 Jacket',
+  '05 Backpack',
+  '06 Pocket',
+  '07 Gloves',
+  '08 Boots',
+];
+const PARTS = ['helmet','head','ears','jacket','backpack','pocket','gloves','boots'];
+
+const stage = document.getElementById('stage');
+const list = document.getElementById('list');
+const out = document.getElementById('out');
+const hint = document.getElementById('hint');
+const points = [];
+
+LABELS.forEach((label, i) => {
+  const li = document.createElement('li');
+  li.dataset.i = i;
+  li.innerHTML = `<span class="n">${i + 1}</span><span>${label}</span>`;
+  list.appendChild(li);
+});
+
+function render() {
+  stage.querySelectorAll('.pin').forEach((n) => n.remove());
+  points.forEach((p, i) => {
+    const el = document.createElement('span');
+    el.className = 'pin';
+    el.textContent = String(i + 1);
+    el.style.left = p.x + '%';
+    el.style.top = p.y + '%';
+    stage.appendChild(el);
+  });
+
+  [...list.children].forEach((li, i) => {
+    li.classList.toggle('done', i < points.length);
+    li.classList.toggle('active', i === points.length);
+  });
+
+  if (points.length >= 8) {
+    hint.innerHTML = '완료! <strong>Copy results</strong> 누른 뒤 채팅에 붙여넣어 주세요.';
+  } else {
+    hint.innerHTML = `이미지를 클릭해서 <strong>${points.length + 1}번</strong> (${LABELS[points.length]}) 위치를 찍어주세요.`;
+  }
+
+  if (!points.length) {
+    out.textContent = '아직 없음 — 1→8 클릭';
+    return;
+  }
+
+  const lines = points.map((p, i) =>
+    `${i + 1} ${PARTS[i]}  ${p.x.toFixed(1)}%  ${p.y.toFixed(1)}%`
+  );
+  const html = points.map((p, i) =>
+    `<span class="schematic__pin" data-part="${PARTS[i]}" style="--x:${p.x.toFixed(1)}%; --y:${p.y.toFixed(1)}%"></span>`
+  ).join('\n');
+  out.textContent = lines.join('\n') + '\n\n' + html;
+}
+
+stage.addEventListener('click', (e) => {
+  if (points.length >= 8) return;
+  const rect = stage.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  points.push({ x, y });
+  render();
+});
+
+document.getElementById('undo').onclick = () => {
+  points.pop();
+  render();
+};
+document.getElementById('reset').onclick = () => {
+  points.length = 0;
+  render();
+};
+document.getElementById('copy').onclick = async () => {
+  await navigator.clipboard.writeText(out.textContent);
+  hint.innerHTML = '복사됨 — 채팅에 붙여넣어 주세요.';
+};
+
+render();
+</script>
+</body>
+</html>

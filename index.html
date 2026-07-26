@@ -60,11 +60,13 @@
       <p class="hero__lede">A curious traveler collecting stories and feelings, one encounter at a time.</p>
 
       <p class="hero__materials" aria-label="Emotions through craft">
-        Emotions through
-        Color <span aria-hidden="true">•</span>
-        Texture <span aria-hidden="true">•</span>
-        Material <span aria-hidden="true">•</span>
-        Pattern
+        <span class="hero__materials-lead">Emotions <span class="hero__materials-through">through</span></span>
+        <span class="hero__materials-list">
+          Color <span aria-hidden="true">•</span>
+          Texture <span aria-hidden="true">•</span>
+          Material <span aria-hidden="true">•</span>
+          Pattern
+        </span>
       </p>
 
       <div class="hero__actions">
@@ -103,7 +105,7 @@
 
     <div class="who">
       <figure class="who__art reveal">
-        <img src="assets/img/felly_foreground2.png" alt="FEELY the Traveler" loading="lazy">
+        <img src="assets/img/feely_foreground2.png" alt="FEELY the Traveler" loading="lazy">
       </figure>
 
       <div class="who__copy">
@@ -229,52 +231,110 @@
       <h2 class="sechead__title">Character Design</h2>
     </div>
 
-    <div class="anatomy">
-      <div class="anatomy__item reveal">
-        <h3>The Head</h3>
-        <p>The glowing signal shows today's emotion—</p>
-        <p class="muted">the feeling Feely is carrying right now.<br>The color changes,<br>but Feely remains the same traveler.</p>
-      </div>
+    <div class="schematic reveal">
+      <p class="schematic__meta">
+        <span>UNIT · FEELY</span>
+        <span aria-hidden="true">//</span>
+        <span>HANDMADE ASSEMBLY</span>
+      </p>
 
-      <div class="anatomy__item reveal">
-        <h3>The Helmet</h3>
-        <p>Not to hide emotions.</p>
-        <p class="muted">A sound-based storage device<br>that reads and holds the feelings Feely hears—<br>protecting the heart while the journey continues.</p>
-      </div>
+      <div class="schematic__board">
+        <aside class="schematic__side schematic__side--left">
+          <article class="callout" data-part="helmet">
+            <span class="callout__id">01</span>
+            <div class="callout__body">
+              <h3>The Helmet</h3>
+              <p>Not to hide emotions.</p>
+              <p class="muted">A sound-based storage device that reads and holds the feelings Feely hears—protecting the heart while the journey continues.</p>
+            </div>
+          </article>
 
-      <div class="anatomy__item reveal">
-        <h3>The Ear Sensors</h3>
-        <p>Listening to stories.</p>
-        <p class="muted">Reading emotion through sound—<br>feelings that have been spoken,<br>and feelings still waiting to be heard.</p>
-      </div>
+          <article class="callout" data-part="head">
+            <span class="callout__id">02</span>
+            <div class="callout__body">
+              <h3>The Head</h3>
+              <p>The glowing signal shows today's emotion—</p>
+              <p class="muted">the feeling Feely is carrying right now. The color changes, but Feely remains the same traveler.</p>
+            </div>
+          </article>
 
-      <div class="anatomy__item reveal">
-        <h3>The Backpack</h3>
-        <p>Where collected stories travel.</p>
-        <p class="muted">Emotions gathered along the way.<br>Small treasures.<br>Tiny moments.<br>Nothing is forgotten.</p>
-      </div>
+          <article class="callout" data-part="ears">
+            <span class="callout__id">03</span>
+            <div class="callout__body">
+              <h3>The Ear Sensors</h3>
+              <p>Listening to stories.</p>
+              <p class="muted">Reading emotion through sound—feelings that have been spoken, and feelings still waiting to be heard.</p>
+            </div>
+          </article>
 
-      <div class="anatomy__item reveal">
-        <h3>The Jacket</h3>
-        <p>The courage to keep going—</p>
-        <p class="muted">and keep listening.</p>
-      </div>
+          <article class="callout" data-part="jacket">
+            <span class="callout__id">04</span>
+            <div class="callout__body">
+              <h3>The Jacket</h3>
+              <p>The courage to keep going—</p>
+              <p class="muted">and keep listening.</p>
+            </div>
+          </article>
+        </aside>
 
-      <div class="anatomy__item reveal">
-        <h3>The Pocket</h3>
-        <p>A place to keep what feelings leave behind.</p>
-      </div>
+        <figure class="schematic__figure">
+          <div class="schematic__canvas">
+            <img
+              class="schematic__img"
+              src="assets/img/feely_design.png"
+              alt="FEELY character schematic — voxel traveler assembled from Emotion Cubes."
+              loading="lazy"
+            >
 
-      <div class="anatomy__item reveal">
-        <h3>Gloves</h3>
-        <p>Connecting carefully with the world,</p>
-        <p class="muted">and with the people in it.</p>
-      </div>
+            <span class="schematic__pin" data-part="helmet" style="--x:44.0%; --y:12.7%"></span>
+            <span class="schematic__pin" data-part="head" style="--x:48.3%; --y:31.5%"></span>
+            <span class="schematic__pin" data-part="ears" style="--x:23.1%; --y:40.9%"></span>
+            <span class="schematic__pin" data-part="jacket" style="--x:39.6%; --y:64.0%"></span>
+            <span class="schematic__pin" data-part="backpack" style="--x:79.9%; --y:58.2%"></span>
+            <span class="schematic__pin" data-part="pocket" style="--x:59.8%; --y:74.6%"></span>
+            <span class="schematic__pin" data-part="gloves" style="--x:70.2%; --y:80.4%"></span>
+            <span class="schematic__pin" data-part="boots" style="--x:64.2%; --y:91.4%"></span>
+          </div>
+        </figure>
 
-      <div class="anatomy__item reveal">
-        <h3>Boots</h3>
-        <p>One small step toward the next story.</p>
-        <p class="muted">Every day.</p>
+        <svg class="schematic__wires" aria-hidden="true"></svg>
+
+        <aside class="schematic__side schematic__side--right">
+          <article class="callout" data-part="backpack">
+            <span class="callout__id">05</span>
+            <div class="callout__body">
+              <h3>The Backpack</h3>
+              <p>Where collected stories travel.</p>
+              <p class="muted">Emotions gathered along the way. Small treasures. Tiny moments. Nothing is forgotten.</p>
+            </div>
+          </article>
+
+          <article class="callout" data-part="pocket">
+            <span class="callout__id">06</span>
+            <div class="callout__body">
+              <h3>The Pocket</h3>
+              <p>A place to keep what feelings leave behind.</p>
+            </div>
+          </article>
+
+          <article class="callout" data-part="gloves">
+            <span class="callout__id">07</span>
+            <div class="callout__body">
+              <h3>Gloves</h3>
+              <p>Connecting carefully with the world,</p>
+              <p class="muted">and with the people in it.</p>
+            </div>
+          </article>
+
+          <article class="callout" data-part="boots">
+            <span class="callout__id">08</span>
+            <div class="callout__body">
+              <h3>Boots</h3>
+              <p>One small step toward the next story.</p>
+              <p class="muted">Every day.</p>
+            </div>
+          </article>
+        </aside>
       </div>
     </div>
   </div>

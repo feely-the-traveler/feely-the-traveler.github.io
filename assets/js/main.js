@@ -228,4 +228,74 @@
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'ArrowRight') step(1);
   });
+
+  /* ---------- Character schematic leaders ---------- */
+  const schematicBoard = document.querySelector('.schematic__board');
+  const schematicWires = document.querySelector('.schematic__wires');
+  const schematicImg = document.querySelector('.schematic__img');
+
+  const drawSchematicWires = () => {
+    if (!schematicBoard || !schematicWires) return;
+
+    if (window.matchMedia('(max-width: 1000px)').matches) {
+      schematicWires.replaceChildren();
+      return;
+    }
+
+    const boardRect = schematicBoard.getBoundingClientRect();
+    const w = boardRect.width;
+    const h = boardRect.height;
+    if (w < 2 || h < 2) return;
+
+    schematicWires.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    schematicWires.setAttribute('width', String(w));
+    schematicWires.setAttribute('height', String(h));
+
+    const ns = 'http://www.w3.org/2000/svg';
+    const frag = document.createDocumentFragment();
+
+    schematicBoard.querySelectorAll('.callout[data-part]').forEach((callout) => {
+      const part = callout.dataset.part;
+      const pin = schematicBoard.querySelector(`.schematic__pin[data-part="${part}"]`);
+      const id = callout.querySelector('.callout__id');
+      if (!pin || !id) return;
+
+      const idRect = id.getBoundingClientRect();
+      const pinRect = pin.getBoundingClientRect();
+      const leftSide = Boolean(callout.closest('.schematic__side--left'));
+
+      const x1 = (leftSide ? idRect.right : idRect.left) - boardRect.left + (leftSide ? 4 : -4);
+      const y1 = idRect.top + idRect.height / 2 - boardRect.top;
+      const x2 = pinRect.left + pinRect.width / 2 - boardRect.left;
+      const y2 = pinRect.top + pinRect.height / 2 - boardRect.top;
+      const elbow = leftSide
+        ? x1 + Math.max(18, (x2 - x1) * 0.42)
+        : x1 - Math.max(18, (x1 - x2) * 0.42);
+
+      const path = document.createElementNS(ns, 'path');
+      path.setAttribute('data-part', part);
+      path.setAttribute('d', `M ${x1.toFixed(1)} ${y1.toFixed(1)} H ${elbow.toFixed(1)} L ${x2.toFixed(1)} ${y2.toFixed(1)}`);
+      frag.appendChild(path);
+    });
+
+    schematicWires.replaceChildren(frag);
+  };
+
+  let wireRaf = 0;
+  const scheduleSchematicWires = () => {
+    cancelAnimationFrame(wireRaf);
+    wireRaf = requestAnimationFrame(drawSchematicWires);
+  };
+
+  if (schematicBoard && schematicWires) {
+    scheduleSchematicWires();
+    window.addEventListener('resize', scheduleSchematicWires, { passive: true });
+    if (schematicImg) {
+      if (schematicImg.complete) scheduleSchematicWires();
+      else schematicImg.addEventListener('load', scheduleSchematicWires, { once: true });
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(scheduleSchematicWires).observe(schematicBoard);
+    }
+  }
 })();

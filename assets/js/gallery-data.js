@@ -29,8 +29,7 @@ const GALLERY = [
       { file: "chapter/ch1/ep06.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
       { file: "chapter/ch1/ep07.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
       { file: "chapter/ch1/ep08.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep09.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/back.PNG", tag: "Epilogue", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" }
+      { file: "chapter/ch1/ep09.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" }
     ]
   },
   {

@@ -49,7 +49,9 @@
   // Flat list of every work, in display order, for lightbox navigation.
   const flat = [];
 
-  const epLabel = (file) => {
+  const epLabel = (work) => {
+    if (work && work.tag) return work.tag;
+    const file = typeof work === 'string' ? work : (work && work.file) || '';
     const match = file.match(/([^/\\]+)\.[^.]+$/);
     return match ? match[1].toUpperCase() : file;
   };
@@ -104,7 +106,8 @@
 
       chapter.works.forEach((work) => {
         const index = flat.length;
-        flat.push({ ...work, chapter: chapter.label, ep: epLabel(work.file) });
+        const label = epLabel(work);
+        flat.push({ ...work, chapter: chapter.label, ep: label });
 
         const tile = document.createElement('button');
         tile.className = 'tile';
@@ -115,10 +118,10 @@
 
         tile.innerHTML =
           '<span class="tile__imgwrap">' +
-            '<span class="tile__ep">' + epLabel(work.file) + '</span>' +
+            '<span class="tile__ep">' + label + '</span>' +
             '<img src="' + work.file + '" alt="' +
               (work.emotion ? work.emotion + ' — ' : '') +
-              chapter.label + ' ' + epLabel(work.file) +
+              chapter.label + ' ' + label +
               ' by Feely the Traveler" loading="lazy">' +
           '</span>' +
           ((work.emotion || colors.length)

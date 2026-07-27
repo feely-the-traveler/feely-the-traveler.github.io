@@ -29,8 +29,12 @@ Official website source for the brand. Deployed with GitHub Pages.
 └── chapter/
     ├── ch1/
     │   ├── name.txt        Chapter name
+    │   ├── front.PNG       Prologue image (optional)
+    │   ├── front.txt       Prologue story note (optional)
     │   ├── ep01.PNG        Episode image
     │   ├── ep01.txt        Episode story note
+    │   ├── back.PNG        Epilogue image (optional)
+    │   ├── back.txt        Epilogue story note (optional)
     │   └── ...
     ├── ch2/
     └── ch3/                (hidden on the site until images are added)
@@ -45,11 +49,17 @@ Official website source for the brand. Deployed with GitHub Pages.
 ```
 chapter/ch3/
   name.txt          ← chapter name (one line)
-  ep01.jpg          ← image (.png / .jpg / .jpeg / .webp)
-  ep01.txt          ← story note (optional)
+  front.jpg         ← prologue image (optional)
+  front.txt         ← prologue story note (optional)
+  ep01.jpg          ← episode image (.png / .jpg / .jpeg / .webp)
+  ep01.txt          ← episode story note (optional)
   ep02.png
   ep02.txt
+  back.jpg          ← epilogue image (optional)
+  back.txt          ← epilogue story note (optional)
 ```
+
+Display order inside a chapter: **Prologue → episodes → Epilogue**.
 
 Prefer **1K JPEG** (long edge ~1000–1200px) — about 200–500KB per file, so storage stays manageable.
 
@@ -76,10 +86,14 @@ Changes under `chapter/ch*` will regenerate `gallery-data.js` automatically.
 |---|---|
 | `chapter/chN/` | Chapter folder (`ch1`, `ch2`, `ch10`, …) |
 | `name.txt` | Chapter name shown in tabs |
-| `epXX.png`, etc. | Artwork image (any case/extension; stem must be `ep01` style) |
-| `epXX.txt` | Story note → shown in the card / lightbox |
+| `front.png`, etc. | Prologue image → shown as **Prologue** (optional; first in the chapter) |
+| `front.txt` | Prologue story note |
+| `epXX.png`, etc. | Episode image (any case/extension; stem must be `ep01` style) |
+| `epXX.txt` | Episode story note → shown in the card / lightbox |
+| `back.png`, etc. | Epilogue image → shown as **Epilogue** (optional; last in the chapter) |
+| `back.txt` | Epilogue story note |
 
-Only episodes with an image are included. Notes without an image are skipped.
+Only works with an image are included. Notes without an image are skipped.
 
 ---
 

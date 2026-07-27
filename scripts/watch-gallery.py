@@ -20,13 +20,11 @@ POLL_SEC = 1.0
 
 def snapshot() -> dict[str, float]:
     state: dict[str, float] = {}
-    chapter_root = ROOT / "chapter"
-    if not chapter_root.is_dir():
-        return state
-    for folder in chapter_root.glob("ch*"):
-        if not folder.is_dir():
+    roots = [ROOT / "chapter", ROOT / "companion"]
+    for chapter_root in roots:
+        if not chapter_root.is_dir():
             continue
-        for path in folder.rglob("*"):
+        for path in chapter_root.rglob("*"):
             if path.is_file():
                 try:
                     state[str(path.relative_to(ROOT))] = path.stat().st_mtime
@@ -41,7 +39,7 @@ def build() -> None:
 
 
 def main() -> None:
-    print(f"[watch] watching {ROOT}/chapter/ch*  (Ctrl+C to stop)")
+    print(f"[watch] watching chapter/ch* and companion/  (Ctrl+C to stop)")
     build()
     prev = snapshot()
     try:

@@ -12,6 +12,11 @@
  *   back.png      epilogue (optional)
  *   back.txt      epilogue note (optional)
  *
+ * Optional companion/ folder (artist section, 4 columns):
+ *   companion.png / .jpg       Companion Feely portrait
+ *   companion_img.png / .jpg   how the artist carries Feely
+ *   companion.txt              story note (optional)
+ *
  * Then run:  python scripts/build-gallery.py
  */
 
@@ -43,3 +48,9 @@ const GALLERY = [
     ]
   }
 ];
+
+const COMPANION = {
+  file: "companion/companion.PNG",
+  img: "companion/companion_img.PNG",
+  note: "\"... I feel relaxed when I see the sky...\""
+};

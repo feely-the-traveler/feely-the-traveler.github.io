@@ -38,6 +38,10 @@ Official website source for the brand. Deployed with GitHub Pages.
     │   └── ...
     ├── ch2/
     └── ch3/                (hidden on the site until images are added)
+└── companion/
+    ├── companion.jpg       Companion Feely portrait (artist col 3)
+    ├── companion_img.jpg   Artist carrying Feely (artist col 4)
+    └── companion.txt       Companion story note (optional)
 ```
 
 ---
@@ -94,6 +98,24 @@ Changes under `chapter/ch*` will regenerate `gallery-data.js` automatically.
 | `back.txt` | Epilogue story note |
 
 Only works with an image are included. Notes without an image are skipped.
+
+### Companion Feely (artist section)
+
+```
+companion/
+  companion.jpg         ← portrait (.png / .jpg / .jpeg / .webp)
+  companion_img.jpg     ← how the artist carries Feely (optional)
+  companion.txt         ← optional story note
+```
+
+When those files exist, the artist section becomes **4 columns**:
+
+1. **Made by Jae.Y**
+2. **Companion Feely** + not-for-sale copy
+3. `companion.jpg` portrait
+4. `companion_img.jpg` on-the-road photo
+
+Not listed in The Journey gallery.
 
 ---
 

@@ -204,17 +204,21 @@
   const close = () => {
     lb.hidden = true;
     lbImg.src = '';
+    delete lb.dataset.single;
     document.body.style.overflow = '';
   };
 
   const step = (dir) => {
-    if (!flat.length) return;
+    if (lb.dataset.single === '1' || !flat.length) return;
     render((current + dir + flat.length) % flat.length);
   };
 
   document.addEventListener('click', (e) => {
     const tile = e.target.closest('.tile');
-    if (tile) open(Number(tile.dataset.index));
+    if (tile) {
+      delete lb.dataset.single;
+      open(Number(tile.dataset.index));
+    }
   });
 
   document.getElementById('lbClose').addEventListener('click', close);
@@ -228,9 +232,94 @@
   document.addEventListener('keydown', (e) => {
     if (lb.hidden) return;
     if (e.key === 'Escape') close();
+    if (lb.dataset.single === '1') return;
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'ArrowRight') step(1);
   });
+
+  /* ---------- Companion Feely (artist, 4 columns) ---------- */
+  const artistRow = document.getElementById('artistRow');
+  const companionAside =
+    'Not for sale — Feely travels with the artist, wherever the journey goes.';
+
+  const openCompanionLb = (src, meta, note) => {
+    if (!src) return;
+    lbImg.src = src;
+    lbImg.alt = meta;
+    lbMeta.textContent = meta;
+    lbEmotion.hidden = true;
+    lbEmotion.textContent = '';
+    lbNote.hidden = false;
+    lbNote.textContent = note || companionAside;
+    lbStory.classList.remove('is-empty');
+    lb.dataset.single = '1';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+
+  if (
+    artistRow &&
+    typeof COMPANION !== 'undefined' &&
+    COMPANION &&
+    (COMPANION.file || COMPANION.img)
+  ) {
+    artistRow.classList.add('artist__row--companion');
+
+    const group = document.createElement('div');
+    group.className = 'artist__companion-group reveal';
+
+    const copyCol = document.createElement('div');
+    copyCol.className = 'artist__col artist__copy';
+    copyCol.innerHTML =
+      '<span class="artist__eyebrow">Companion Feely</span>' +
+      '<p class="artist__copy-body">' + companionAside + '</p>';
+    group.appendChild(copyCol);
+
+    if (COMPANION.file) {
+      const portraitCol = document.createElement('div');
+      portraitCol.className = 'artist__col artist__media';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'artist__photo';
+      btn.setAttribute('aria-label', 'View Companion Feely');
+      const img = document.createElement('img');
+      img.src = COMPANION.file;
+      img.alt = 'Companion Feely';
+      img.loading = 'lazy';
+      btn.appendChild(img);
+      portraitCol.appendChild(btn);
+      group.appendChild(portraitCol);
+      btn.addEventListener('click', () =>
+        openCompanionLb(COMPANION.file, 'Companion Feely', companionAside)
+      );
+    }
+
+    if (COMPANION.img) {
+      const lifeCol = document.createElement('div');
+      lifeCol.className = 'artist__col artist__media';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'artist__photo';
+      btn.setAttribute('aria-label', 'View Companion Feely on the road');
+      const img = document.createElement('img');
+      img.src = COMPANION.img;
+      img.alt = 'Companion Feely traveling with the artist';
+      img.loading = 'lazy';
+      btn.appendChild(img);
+      lifeCol.appendChild(btn);
+      group.appendChild(lifeCol);
+      btn.addEventListener('click', () =>
+        openCompanionLb(
+          COMPANION.img,
+          'Companion Feely · On the road',
+          companionAside
+        )
+      );
+    }
+
+    artistRow.appendChild(group);
+    io.observe(group);
+  }
 
   /* ---------- Character schematic leaders ---------- */
   const schematicBoard = document.querySelector('.schematic__board');

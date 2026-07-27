@@ -16,6 +16,11 @@ chapter/
 
 Display order inside a chapter: Prologue → episodes → Epilogue.
 
+companion/
+  companion.png / .jpg     companion Feely portrait (optional)
+  companion_img.png / .jpg how the artist carries Feely (optional)
+  companion.txt            companion story note (optional)
+
 Run from repo root:
   python scripts/build-gallery.py
 """
@@ -179,7 +184,32 @@ def scan_chapter(folder: Path) -> dict | None:
     }
 
 
-def render(chapters: list[dict]) -> str:
+def scan_companion() -> dict | None:
+    folder = ROOT / "companion"
+    if not folder.is_dir():
+        return None
+
+    portrait = find_image(folder, "companion")
+    life = find_image(folder, "companion_img")
+    if not portrait and not life:
+        return None
+
+    def to_rel(path: Path | None) -> str:
+        if not path:
+            return ""
+        rel = (folder.relative_to(ROOT) / path.name).as_posix()
+        if CDN_BASE_URL:
+            return CDN_BASE_URL.rstrip("/") + "/" + rel
+        return rel
+
+    return {
+        "file": to_rel(portrait),
+        "img": to_rel(life),
+        "note": find_note(folder, "companion"),
+    }
+
+
+def render(chapters: list[dict], companion: dict | None) -> str:
     lines = [
         "/*",
         " * FEELY the Traveler — Gallery data",
@@ -194,6 +224,11 @@ def render(chapters: list[dict]) -> str:
         " *   ep01.txt      episode story note (optional)",
         " *   back.png      epilogue (optional)",
         " *   back.txt      epilogue note (optional)",
+        " *",
+        " * Optional companion/ folder (artist section, 4 columns):",
+        " *   companion.png / .jpg       Companion Feely portrait",
+        " *   companion_img.png / .jpg   how the artist carries Feely",
+        " *   companion.txt              story note (optional)",
         " *",
         " * Then run:  python scripts/build-gallery.py",
         " */",
@@ -225,6 +260,17 @@ def render(chapters: list[dict]) -> str:
 
     lines.append("];")
     lines.append("")
+
+    if companion:
+        lines.append("const COMPANION = {")
+        lines.append(f"  file: {js_string(companion['file'])},")
+        lines.append(f"  img: {js_string(companion.get('img', ''))},")
+        lines.append(f"  note: {js_string(companion['note'])}")
+        lines.append("};")
+    else:
+        lines.append("const COMPANION = null;")
+
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -242,14 +288,24 @@ def main() -> None:
                     chapters.append(chapter)
 
     chapters.sort(key=lambda c: c["num"])
+    companion = scan_companion()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(chapters), encoding="utf-8")
+    OUT.write_text(render(chapters, companion), encoding="utf-8")
 
     total = sum(len(c["works"]) for c in chapters)
     print(f"Wrote {OUT.relative_to(ROOT)} - {len(chapters)} chapters, {total} works")
     for c in chapters:
         label = c["label"].encode("ascii", "backslashreplace").decode("ascii")
         print(f"  {c['id']}: {label} ({len(c['works'])})")
+    if companion:
+        bits = []
+        if companion.get("file"):
+            bits.append(f"portrait={companion['file']}")
+        if companion.get("img"):
+            bits.append(f"life={companion['img']}")
+        print(f"  companion: {', '.join(bits) or '(empty)'}")
+    else:
+        print("  companion: (none)")
 
 
 if __name__ == "__main__":

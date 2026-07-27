@@ -240,7 +240,7 @@
   /* ---------- Companion Feely (artist, 4 columns) ---------- */
   const artistRow = document.getElementById('artistRow');
   const companionAside =
-    'Not for sale — Feely travels with the artist, wherever the journey goes.';
+    'Not for sale — this Companion Feely travels with the artist, wherever the journey goes.';
 
   const openCompanionLb = (src, meta, note) => {
     if (!src) return;

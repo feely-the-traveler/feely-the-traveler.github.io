@@ -26,25 +26,7 @@ const GALLERY = [
     label: "Chapter 1",
     title: "Everyday Life",
     works: [
-      { file: "chapter/ch1/ep01.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep02.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep03.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep04.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep05.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep06.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep07.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep08.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch1/ep09.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" }
-    ]
-  },
-  {
-    id: "ch2",
-    label: "Chapter 2",
-    title: "A New Journey",
-    works: [
-      { file: "chapter/ch2/ep01.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch2/ep02.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" },
-      { file: "chapter/ch2/ep03.PNG", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"... I feel relaxed when I see the sky...\"" }
+      { file: "chapter/ch1/ep01.jpeg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \r\nMaybe it's the quiet. Maybe it's the endless blue.\r\nFor a moment, I believe everything will be okay.\r\nTomorrow still worries me. But today, the sky is enough....\"" }
     ]
   }
 ];

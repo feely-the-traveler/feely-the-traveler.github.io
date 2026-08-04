@@ -26,7 +26,7 @@ const GALLERY = [
     label: "Chapter 1",
     title: "Everyday Life",
     works: [
-      { file: "chapter/ch1/ep01.jpeg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \r\nMaybe it's the quiet. Maybe it's the endless blue.\r\nFor a moment, I believe everything will be okay.\r\nTomorrow still worries me. But today, the sky is enough....\"" }
+      { file: "chapter/ch1/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \r\nMaybe it's the quiet. Maybe it's the endless blue.\r\nFor a moment, I believe everything will be okay.\r\nTomorrow still worries me. But today, the sky is enough....\"" }
     ]
   }
 ];

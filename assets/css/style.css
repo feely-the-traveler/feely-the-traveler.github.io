@@ -236,6 +236,7 @@ p:last-child { margin-bottom: 0; }
    query below, so nothing here can ever render above that width. */
 .nav__toggle { display: none; }
 .nav__mobile { display: none; }
+.nav__icon-cta { display: none; }
 
 /* ==========================================================================
    Buttons
@@ -1790,7 +1791,28 @@ p:last-child { margin-bottom: 0; }
     justify-self: start;
   }
   .nav__links { display: none; }
-  .nav__cta .btn--ghost { display: none; }
+  .nav__cta { display: none; }
+
+  .nav__icon-cta {
+    display: flex;
+    gap: 8px;
+  }
+  .nav__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink-mid);
+    transition: color .25s, border-color .25s, transform .25s var(--ease);
+  }
+  .nav__icon-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-dim);
+    transform: translateY(-2px);
+  }
 
   .nav__toggle {
     display: inline-flex;
@@ -1840,11 +1862,7 @@ p:last-child { margin-bottom: 0; }
   }
   .nav__mobile a:hover,
   .nav__mobile a:active { color: var(--ink); }
-  .nav__mobile-cta {
-    display: flex;
-    gap: 10px;
-    padding-top: 14px;
-  }
+  .nav__mobile a:last-child { border-bottom: 0; }
 
   body.nav-open { overflow: hidden; }
 

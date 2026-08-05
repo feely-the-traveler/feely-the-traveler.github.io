@@ -1790,7 +1790,7 @@ p:last-child { margin-bottom: 0; }
     justify-self: start;
   }
   .nav__links { display: none; }
-  .nav__cta { display: none; }
+  .nav__cta .btn--ghost { display: none; }
 
   .nav__toggle {
     display: inline-flex;

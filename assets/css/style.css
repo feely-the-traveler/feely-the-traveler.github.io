@@ -231,6 +231,12 @@ p:last-child { margin-bottom: 0; }
 
 .nav__cta { display: flex; gap: 10px; }
 
+/* Mobile-only nav toggle + dropdown — hidden unconditionally here.
+   Visibility rules for these live only inside the max-width:1000px
+   query below, so nothing here can ever render above that width. */
+.nav__toggle { display: none; }
+.nav__mobile { display: none; }
+
 /* ==========================================================================
    Buttons
    ========================================================================== */
@@ -1784,6 +1790,63 @@ p:last-child { margin-bottom: 0; }
     justify-self: start;
   }
   .nav__links { display: none; }
+  .nav__cta { display: none; }
+
+  .nav__toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .nav__toggle-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--ink-mid);
+    transition: transform .25s var(--ease), opacity .2s;
+  }
+  .nav__toggle.is-active .nav__toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__toggle.is-active .nav__toggle-bar:nth-child(2) { opacity: 0; }
+  .nav__toggle.is-active .nav__toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav__mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px clamp(20px, 5vw, 48px) 24px;
+    background: rgba(8, 8, 13, .97);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__mobile.is-open { display: flex; }
+  .nav__mobile a {
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__mobile a:hover,
+  .nav__mobile a:active { color: var(--ink); }
+  .nav__mobile-cta {
+    display: flex;
+    gap: 10px;
+    padding-top: 14px;
+  }
+
+  body.nav-open { overflow: hidden; }
 
   .behind__item,
   .behind__item:nth-child(even) { grid-template-columns: 1fr; }
@@ -1835,7 +1898,6 @@ p:last-child { margin-bottom: 0; }
   html { scroll-padding-top: 74px; }
 
   .nav { padding: 12px 18px; }
-  .nav__cta .btn--ghost { display: none; }
 
   .signalcard { flex-direction: column; text-align: center; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }

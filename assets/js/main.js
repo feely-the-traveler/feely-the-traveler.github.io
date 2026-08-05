@@ -30,6 +30,37 @@
     }
   });
 
+  /* ---------- Mobile nav toggle ---------- */
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  if (navToggle && navMobile) {
+    const closeMobileNav = () => {
+      navMobile.classList.remove('is-open');
+      navToggle.classList.remove('is-active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    };
+    const openMobileNav = () => {
+      navMobile.classList.add('is-open');
+      navToggle.classList.add('is-active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+    };
+    navToggle.addEventListener('click', () => {
+      if (navMobile.classList.contains('is-open')) closeMobileNav();
+      else openMobileNav();
+    });
+    navMobile.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMobileNav);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1000) closeMobileNav();
+    }, { passive: true });
+  }
+
   /* ---------- Reveal on scroll ---------- */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {

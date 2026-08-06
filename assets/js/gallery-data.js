@@ -28,8 +28,8 @@ const GALLERY = [
     works: [
       { file: "chapter/ch1/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \nMaybe it's the quiet. Maybe it's the endless blue.\nFor a moment, I believe everything will be okay.\nTomorrow still worries me. But today, the sky is enough....\"" },
       { file: "chapter/ch1/ep02.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I feel low.\nMaybe it's the rain. Maybe it's comparison. Maybe I'm just tired.\nStrangely, those days help me see myself more honestly...\"" },
-      { file: "chapter/ch1/ep03.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some people don't have to do anything.\nJust being there is enough to brighten my day.....\"" },
-      { file: "chapter/ch1/ep04.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I didn't know love could feel this quiet.\nIt isn't loud. It simply stays.\nLike roots beneath a tree, always there, even when you can't see them....\"" }
+      { file: "chapter/ch1/ep03.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I didn't know love could feel this quiet.\nIt isn't loud. It simply stays.\nLike roots beneath a tree, always there, even when you can't see them....\"" },
+      { file: "chapter/ch1/ep04.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some people don't have to do anything.\nJust being there is enough to brighten my day.....\"" }
     ]
   }
 ];

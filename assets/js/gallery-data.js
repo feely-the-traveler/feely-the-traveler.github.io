@@ -30,7 +30,8 @@ const GALLERY = [
       { file: "chapter/ch1/ep02.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I feel low.\nMaybe it's the rain. Maybe it's comparison. Maybe I'm just tired.\nStrangely, those days help me see myself more honestly...\"" },
       { file: "chapter/ch1/ep03.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I didn't know love could feel this quiet.\nIt isn't loud. It simply stays.\nLike roots beneath a tree, always there, even when you can't see them....\"" },
       { file: "chapter/ch1/ep04.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some people don't have to do anything.\nJust being there is enough to brighten my day.....\"" },
-      { file: "chapter/ch1/ep05.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some mornings don't need a plan. \nJust a warm cup.\nSlow conversations.\nAnd nowhere else to be....\"" }
+      { file: "chapter/ch1/ep05.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some mornings don't need a plan. \nJust a warm cup.\nSlow conversations.\nAnd nowhere else to be....\"" },
+      { file: "chapter/ch1/ep06.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I don't know if any of this will work.\nI just know I'll try again tomorrow...\"" }
     ]
   }
 ];

@@ -33,7 +33,8 @@ const GALLERY = [
       { file: "chapter/ch1/ep05.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some mornings don't need a plan. \nJust a warm cup.\nSlow conversations.\nAnd nowhere else to be....\"" },
       { file: "chapter/ch1/ep06.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I don't know if any of this will work.\nI just know I'll try again tomorrow...\"" },
       { file: "chapter/ch1/ep07.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When my thoughts become too heavy, I go to sleep.\nNot to escape them. Just hoping tomorrow will carry a lighter heart...\"" },
-      { file: "chapter/ch1/ep08.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I miss my father sometimes.\nWhen I do, I miss home too.\nAnd somehow, I start missing everything I can't go back to...\"" }
+      { file: "chapter/ch1/ep08.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I miss my father sometimes.\nWhen I do, I miss home too.\nAnd somehow, I start missing everything I can't go back to...\"" },
+      { file: "chapter/ch1/ep09.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I get angry.\nI leave before my anger speaks for me.\nWhen I come back, I usually understand a little more.\nAbout them. And about myself...\"" }
     ]
   }
 ];

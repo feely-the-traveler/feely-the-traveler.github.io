@@ -321,7 +321,7 @@
       portraitCol.appendChild(btn);
       group.appendChild(portraitCol);
       btn.addEventListener('click', () =>
-        openCompanionLb(COMPANION.file, 'Companion Feely', companionAside)
+        openCompanionLb(COMPANION.file, 'Companion Feely', COMPANION.note)
       );
     }
 
@@ -343,7 +343,7 @@
         openCompanionLb(
           COMPANION.img,
           'Companion Feely · On the road',
-          companionAside
+          COMPANION.note
         )
       );
     }

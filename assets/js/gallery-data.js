@@ -40,7 +40,7 @@ const GALLERY = [
 ];
 
 const COMPANION = {
-  file: "companion/companion.PNG",
-  img: "companion/companion_img.PNG",
-  note: "\"... I feel relaxed when I see the sky...\""
+  file: "companion/companion.jpg",
+  img: "companion/companion_img.jpg",
+  note: "\"...You ride along in a clear little pouch, wherever I go.\nI can't explain it, but good things seem to happen when you're with me.\nMaybe it's luck. Maybe it's just not carrying the day alone.\nEither way, I feel steadier with you close by....\""
 };

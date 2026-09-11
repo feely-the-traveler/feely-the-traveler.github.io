@@ -10,11 +10,15 @@ chapter/
     front.png / .jpg     prologue image (optional)
     front.txt            prologue story note (optional)
     ep01.png / .jpg ...  episode image (any common image extension)
+    ep01_2.png / .jpg    optional side/angle image of the same episode
+    ep01_3.png / .jpg    optional additional angle (any count)
     ep01.txt             episode story note (optional)
     back.png / .jpg      epilogue image (optional)
     back.txt             epilogue story note (optional)
 
 Display order inside a chapter: Prologue → episodes → Epilogue.
+Side images (ep01_2, ep01_3, ...) appear as thumbnails under the main
+photo in the lightbox, in numeric order, and share the episode's note.
 
 companion/
   companion.png / .jpg     companion Feely portrait (optional)
@@ -47,6 +51,7 @@ CDN_BASE_URL = ""
 
 IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".PNG", ".JPG", ".JPEG", ".WEBP", ".GIF"}
 EP_RE = re.compile(r"^ep(\d+)$", re.IGNORECASE)
+EP_EXTRA_RE = re.compile(r"^ep(\d+)_(\d+)$", re.IGNORECASE)
 CH_RE = re.compile(r"^ch(\d+)$", re.IGNORECASE)
 
 # Special stems → gallery tag shown in the UI
@@ -102,12 +107,18 @@ def find_note(folder: Path, stem: str) -> str:
     return ""
 
 
-def make_work(folder: Path, img: Path, note: str, tag: str = "") -> dict:
+def to_rel(folder: Path, img: Path) -> str:
     rel = (folder.relative_to(ROOT) / img.name).as_posix()
     if CDN_BASE_URL:
         rel = CDN_BASE_URL.rstrip("/") + "/" + rel
+    return rel
+
+
+def make_work(folder: Path, img: Path, note: str, tag: str = "", extra_images: list[Path] | None = None) -> dict:
+    images = [to_rel(folder, img)] + [to_rel(folder, e) for e in (extra_images or [])]
     return {
-        "file": rel,
+        "file": images[0],
+        "images": images,
         "tag": tag,
         "emotion": "",
         "primary": "",
@@ -137,6 +148,14 @@ def scan_chapter(folder: Path) -> dict | None:
     for path in folder.iterdir():
         if not path.is_file():
             continue
+
+        extra = EP_EXTRA_RE.match(path.stem)
+        if extra and path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp", ".gif"}:
+            n = int(extra.group(1))
+            suffix = int(extra.group(2))
+            episodes.setdefault(n, {}).setdefault("extras", {})[suffix] = path
+            continue
+
         ep = EP_RE.match(path.stem)
         if not ep:
             continue
@@ -165,7 +184,10 @@ def scan_chapter(folder: Path) -> dict | None:
         if not note:
             note = find_note(folder, f"ep{n:02d}") or find_note(folder, f"ep{n}")
 
-        works.append(make_work(folder, img, note))
+        extras = episodes[n].get("extras", {})
+        extra_images = [extras[k] for k in sorted(extras)]
+
+        works.append(make_work(folder, img, note, extra_images=extra_images))
 
     # Epilogue last (back.*)
     epilogue = scan_special(folder, "back")
@@ -194,17 +216,12 @@ def scan_companion() -> dict | None:
     if not portrait and not life:
         return None
 
-    def to_rel(path: Path | None) -> str:
-        if not path:
-            return ""
-        rel = (folder.relative_to(ROOT) / path.name).as_posix()
-        if CDN_BASE_URL:
-            return CDN_BASE_URL.rstrip("/") + "/" + rel
-        return rel
+    def rel_or_empty(path: Path | None) -> str:
+        return to_rel(folder, path) if path else ""
 
     return {
-        "file": to_rel(portrait),
-        "img": to_rel(life),
+        "file": rel_or_empty(portrait),
+        "img": rel_or_empty(life),
         "note": find_note(folder, "companion"),
     }
 
@@ -221,6 +238,7 @@ def render(chapters: list[dict], companion: dict | None) -> str:
         " *   front.png     prologue (optional)",
         " *   front.txt     prologue note (optional)",
         " *   ep01.png      episode image (.png / .jpg / .jpeg / .webp)",
+        " *   ep01_2.png    optional side/angle image of the same episode",
         " *   ep01.txt      episode story note (optional)",
         " *   back.png      epilogue (optional)",
         " *   back.txt      epilogue note (optional)",
@@ -245,9 +263,11 @@ def render(chapters: list[dict], companion: dict | None) -> str:
         for j, work in enumerate(ch["works"]):
             comma = "," if j < len(ch["works"]) - 1 else ""
             support = json.dumps(work["support"], ensure_ascii=False)
+            images = json.dumps(work.get("images", [work["file"]]), ensure_ascii=False)
             lines.append(
                 "      { "
                 f"file: {js_string(work['file'])}, "
+                f"images: {images}, "
                 f"tag: {js_string(work.get('tag', ''))}, "
                 f"emotion: {js_string(work['emotion'])}, "
                 f"primary: {js_string(work['primary'])}, "

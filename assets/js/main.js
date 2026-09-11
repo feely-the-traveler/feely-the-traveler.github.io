@@ -192,18 +192,50 @@
   /* ---------- Lightbox ---------- */
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lbImg');
+  const lbThumbs = document.getElementById('lbThumbs');
   const lbMeta = document.getElementById('lbMeta');
   const lbEmotion = document.getElementById('lbEmotion');
   const lbNote = document.getElementById('lbNote');
   const lbStory = document.getElementById('lbStory');
   let current = 0;
 
+  const showImage = (images, idx, alt) => {
+    lbImg.src = images[idx];
+    lbImg.alt = alt;
+    lbThumbs.querySelectorAll('.lb__thumb').forEach((t, ti) => {
+      t.classList.toggle('is-active', ti === idx);
+    });
+  };
+
   const render = (i) => {
     const item = flat[i];
     if (!item) return;
     current = i;
-    lbImg.src = item.file;
-    lbImg.alt = (item.emotion ? item.emotion + ' — ' : '') + item.chapter + ' ' + item.ep;
+
+    const images = item.images && item.images.length ? item.images : [item.file];
+    const alt = (item.emotion ? item.emotion + ' — ' : '') + item.chapter + ' ' + item.ep;
+
+    lbThumbs.replaceChildren();
+    if (images.length > 1) {
+      lbThumbs.hidden = false;
+      images.forEach((src, idx) => {
+        const thumb = document.createElement('button');
+        thumb.type = 'button';
+        thumb.className = 'lb__thumb';
+        thumb.setAttribute('aria-label', 'View angle ' + (idx + 1));
+        const thumbImg = document.createElement('img');
+        thumbImg.src = src;
+        thumbImg.alt = '';
+        thumbImg.loading = 'lazy';
+        thumb.appendChild(thumbImg);
+        thumb.addEventListener('click', () => showImage(images, idx, alt));
+        lbThumbs.appendChild(thumb);
+      });
+    } else {
+      lbThumbs.hidden = true;
+    }
+
+    showImage(images, 0, alt);
 
     lbMeta.textContent = item.chapter + ' · ' + item.ep;
 
@@ -277,6 +309,8 @@
     if (!src) return;
     lbImg.src = src;
     lbImg.alt = meta;
+    lbThumbs.replaceChildren();
+    lbThumbs.hidden = true;
     lbMeta.textContent = meta;
     lbEmotion.hidden = true;
     lbEmotion.textContent = '';

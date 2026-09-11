@@ -1685,6 +1685,43 @@ p:last-child { margin-bottom: 0; }
   background: var(--bg-alt);
 }
 
+.lb__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.lb__thumbs[hidden] { display: none; }
+
+.lb__thumb {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--bg-alt);
+  cursor: pointer;
+  opacity: .6;
+  transition: opacity .2s var(--ease), border-color .2s var(--ease);
+}
+
+.lb__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lb__thumb:hover { opacity: .85; }
+
+.lb__thumb.is-active {
+  opacity: 1;
+  border-color: var(--orange);
+}
+
 .lb__story {
   min-width: 0;
   max-height: 78vh;

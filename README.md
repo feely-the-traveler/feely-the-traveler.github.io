@@ -56,6 +56,7 @@ chapter/ch3/
   front.jpg         ← prologue image (optional)
   front.txt         ← prologue story note (optional)
   ep01.jpg          ← episode image (.png / .jpg / .jpeg / .webp)
+  ep01_2.jpg        ← optional side/angle image of ep01 (ep01_3, ep01_4, ... also work)
   ep01.txt          ← episode story note (optional)
   ep02.png
   ep02.txt
@@ -93,6 +94,7 @@ Changes under `chapter/ch*` will regenerate `gallery-data.js` automatically.
 | `front.png`, etc. | Prologue image → shown as **Prologue** (optional; first in the chapter) |
 | `front.txt` | Prologue story note |
 | `epXX.png`, etc. | Episode image (any case/extension; stem must be `ep01` style) |
+| `epXX_2.png`, `epXX_3.png`, ... | Optional side/angle images of the same episode → shown as clickable thumbnails under the main photo in the lightbox |
 | `epXX.txt` | Episode story note → shown in the card / lightbox |
 | `back.png`, etc. | Epilogue image → shown as **Epilogue** (optional; last in the chapter) |
 | `back.txt` | Epilogue story note |

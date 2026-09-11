@@ -1727,6 +1727,7 @@ p:last-child { margin-bottom: 0; }
   letter-spacing: .02em;
   color: #ece8e1;
   text-wrap: pretty;
+  white-space: pre-line;
 }
 
 .lb__note[hidden] { display: none; }

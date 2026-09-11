@@ -42,7 +42,7 @@ const GALLERY = [
     label: "Chapter 2",
     title: "A New Journey",
     works: [
-      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...For a while I counted down days without really living in any of them.\nThen one morning there was nothing left to count, and I didn't know what to do with all that time.\nI unpacked slowly, like I still didn't believe these mornings were mine to plan.\nBy the end of the week, I was making plans I hadn't let myself want in a long time....\"" }
+      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Nobody on this campus knew who I used to be, and somehow that felt like room to breathe.\nI signed up for three clubs I knew nothing about, just because the flyers looked interesting.\nI kept hoping I'd run into someone again in the hallway, for no reason I could explain.\nFor the first time in years, I wasn't waiting for permission to want things....\"" }
     ]
   }
 ];

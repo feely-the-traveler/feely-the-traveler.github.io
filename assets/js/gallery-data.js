@@ -8,6 +8,7 @@
  *   front.png     prologue (optional)
  *   front.txt     prologue note (optional)
  *   ep01.png      episode image (.png / .jpg / .jpeg / .webp)
+ *   ep01_2.png    optional side/angle image of the same episode
  *   ep01.txt      episode story note (optional)
  *   back.png      epilogue (optional)
  *   back.txt      epilogue note (optional)
@@ -26,15 +27,15 @@ const GALLERY = [
     label: "Chapter 1",
     title: "Everyday Life",
     works: [
-      { file: "chapter/ch1/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \nMaybe it's the quiet. Maybe it's the endless blue.\nFor a moment, I believe everything will be okay.\nTomorrow still worries me. But today, the sky is enough....\"" },
-      { file: "chapter/ch1/ep02.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I feel low.\nMaybe it's the rain. Maybe it's comparison. Maybe I'm just tired.\nStrangely, those days help me see myself more honestly...\"" },
-      { file: "chapter/ch1/ep03.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I didn't know love could feel this quiet.\nIt isn't loud. It simply stays.\nLike roots beneath a tree, always there, even when you can't see them....\"" },
-      { file: "chapter/ch1/ep04.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some people don't have to do anything.\nJust being there is enough to brighten my day.....\"" },
-      { file: "chapter/ch1/ep05.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some mornings don't need a plan. \nJust a warm cup.\nSlow conversations.\nAnd nowhere else to be....\"" },
-      { file: "chapter/ch1/ep06.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I don't know if any of this will work.\nI just know I'll try again tomorrow...\"" },
-      { file: "chapter/ch1/ep07.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When my thoughts become too heavy, I go to sleep.\nNot to escape them. Just hoping tomorrow will carry a lighter heart...\"" },
-      { file: "chapter/ch1/ep08.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I miss my father sometimes.\nWhen I do, I miss home too.\nAnd somehow, I start missing everything I can't go back to...\"" },
-      { file: "chapter/ch1/ep09.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I get angry.\nI leave before my anger speaks for me.\nWhen I come back, I usually understand a little more.\nAbout them. And about myself...\"" }
+      { file: "chapter/ch1/ep01.jpg", images: ["chapter/ch1/ep01.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When life feels heavy, I look at the sky. \nMaybe it's the quiet. Maybe it's the endless blue.\nFor a moment, I believe everything will be okay.\nTomorrow still worries me. But today, the sky is enough....\"" },
+      { file: "chapter/ch1/ep02.jpg", images: ["chapter/ch1/ep02.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I feel low.\nMaybe it's the rain. Maybe it's comparison. Maybe I'm just tired.\nStrangely, those days help me see myself more honestly...\"" },
+      { file: "chapter/ch1/ep03.jpg", images: ["chapter/ch1/ep03.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I didn't know love could feel this quiet.\nIt isn't loud. It simply stays.\nLike roots beneath a tree, always there, even when you can't see them....\"" },
+      { file: "chapter/ch1/ep04.jpg", images: ["chapter/ch1/ep04.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some people don't have to do anything.\nJust being there is enough to brighten my day.....\"" },
+      { file: "chapter/ch1/ep05.jpg", images: ["chapter/ch1/ep05.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Some mornings don't need a plan. \nJust a warm cup.\nSlow conversations.\nAnd nowhere else to be....\"" },
+      { file: "chapter/ch1/ep06.jpg", images: ["chapter/ch1/ep06.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I don't know if any of this will work.\nI just know I'll try again tomorrow...\"" },
+      { file: "chapter/ch1/ep07.jpg", images: ["chapter/ch1/ep07.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When my thoughts become too heavy, I go to sleep.\nNot to escape them. Just hoping tomorrow will carry a lighter heart...\"" },
+      { file: "chapter/ch1/ep08.jpg", images: ["chapter/ch1/ep08.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I miss my father sometimes.\nWhen I do, I miss home too.\nAnd somehow, I start missing everything I can't go back to...\"" },
+      { file: "chapter/ch1/ep09.jpg", images: ["chapter/ch1/ep09.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I get angry.\nI leave before my anger speaks for me.\nWhen I come back, I usually understand a little more.\nAbout them. And about myself...\"" }
     ]
   },
   {
@@ -42,7 +43,7 @@ const GALLERY = [
     label: "Chapter 2",
     title: "A New Journey",
     works: [
-      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...New campus.\nNew faces.\nSo many things I wanted to try.\n\nFor the first time,\nthere was no familiar path to follow.\n\nI didn't know where I'd end up.\nAnd somehow,\nthat made me want to go everywhere....\"" }
+      { file: "chapter/ch2/ep01.jpg", images: ["chapter/ch2/ep01.jpg", "chapter/ch2/ep01_2.jpg", "chapter/ch2/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...New campus.\nNew faces.\nSo many things I wanted to try.\n\nFor the first time,\nthere was no familiar path to follow.\n\nI didn't know where I'd end up.\nAnd somehow,\nthat made me want to go everywhere....\"" }
     ]
   }
 ];

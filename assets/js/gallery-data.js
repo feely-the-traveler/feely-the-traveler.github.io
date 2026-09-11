@@ -36,6 +36,14 @@ const GALLERY = [
       { file: "chapter/ch1/ep08.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I miss my father sometimes.\nWhen I do, I miss home too.\nAnd somehow, I start missing everything I can't go back to...\"" },
       { file: "chapter/ch1/ep09.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Sometimes I get angry.\nI leave before my anger speaks for me.\nWhen I come back, I usually understand a little more.\nAbout them. And about myself...\"" }
     ]
+  },
+  {
+    id: "ch2",
+    label: "Chapter 2",
+    title: "A New Journey",
+    works: [
+      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Something ended, and for once, the page underneath was blank.\nI didn't rush to fill it. I let it stay clean for a while.\nThen the colors came back on their own—\nblue, believing things might finally flow. Red, a passion I'd been saving. Teal, a quiet hope that good things were close....\"" }
+    ]
   }
 ];
 

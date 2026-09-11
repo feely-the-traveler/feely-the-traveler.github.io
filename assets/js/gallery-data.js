@@ -42,7 +42,7 @@ const GALLERY = [
     label: "Chapter 2",
     title: "A New Journey",
     works: [
-      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Something ended, and for once, the page underneath was blank.\nI didn't rush to fill it. I let it stay clean for a while.\nThen the colors came back on their own—\nblue, believing things might finally flow. Red, a passion I'd been saving. Teal, a quiet hope that good things were close....\"" }
+      { file: "chapter/ch2/ep01.jpg", tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...For a while I counted down days without really living in any of them.\nThen one morning there was nothing left to count, and I didn't know what to do with all that time.\nI unpacked slowly, like I still didn't believe these mornings were mine to plan.\nBy the end of the week, I was making plans I hadn't let myself want in a long time....\"" }
     ]
   }
 ];

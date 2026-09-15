@@ -43,7 +43,8 @@ const GALLERY = [
     label: "Chapter 2",
     title: "A New Journey",
     works: [
-      { file: "chapter/ch2/ep01.jpg", images: ["chapter/ch2/ep01.jpg", "chapter/ch2/ep01_2.jpg", "chapter/ch2/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...New campus.\nNew faces.\nSo many things I wanted to try.\n\nFor the first time,\nthere was no familiar path to follow.\n\nI didn't know where I'd end up.\nAnd somehow,\nthat made me want to go everywhere....\"" }
+      { file: "chapter/ch2/ep01.jpg", images: ["chapter/ch2/ep01.jpg", "chapter/ch2/ep01_2.jpg", "chapter/ch2/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...New campus.\nNew faces.\nSo many things I wanted to try.\n\nFor the first time,\nthere was no familiar path to follow.\n\nI didn't know where I'd end up.\nAnd somehow,\nthat made me want to go everywhere....\"" },
+      { file: "chapter/ch2/ep02.jpg", images: ["chapter/ch2/ep02.jpg", "chapter/ch2/ep02_2.jpg", "chapter/ch2/ep02_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I wasn't sure where this road would lead.\n\nI was afraid,\nbut I chose to go anyway.\n\nMaybe courage is simply taking the first step,\nwith hope ahead\nand someone you love beside you....\"" }
     ]
   }
 ];

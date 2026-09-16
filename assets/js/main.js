@@ -73,6 +73,67 @@
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+  /* ---------- News ---------- */
+  const newsListEl = document.getElementById('newsList');
+  const newsMoreBtn = document.getElementById('newsMore');
+
+  const formatNewsDate = (iso) => {
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  };
+
+  if (newsListEl && typeof NEWS !== 'undefined' && NEWS.length) {
+    const MAX_ITEMS = 10;
+    const COLLAPSED_COUNT = 4;
+    const newsItems = NEWS.slice(0, MAX_ITEMS);
+
+    newsItems.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.className = 'news-item';
+      if (i >= COLLAPSED_COUNT) li.hidden = true;
+
+      const date = document.createElement('span');
+      date.className = 'news-item__date';
+      date.textContent = formatNewsDate(item.date);
+      li.appendChild(date);
+
+      const body = document.createElement('div');
+
+      const title = document.createElement('h3');
+      title.className = 'news-item__title';
+      if (item.link) {
+        const a = document.createElement('a');
+        a.href = item.link;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = item.title;
+        title.appendChild(a);
+      } else {
+        title.textContent = item.title;
+      }
+      body.appendChild(title);
+
+      if (item.body) {
+        const p = document.createElement('p');
+        p.className = 'news-item__body';
+        p.textContent = item.body;
+        body.appendChild(p);
+      }
+
+      li.appendChild(body);
+      newsListEl.appendChild(li);
+    });
+
+    if (newsItems.length > COLLAPSED_COUNT && newsMoreBtn) {
+      newsMoreBtn.hidden = false;
+      newsMoreBtn.addEventListener('click', () => {
+        newsListEl.querySelectorAll('.news-item[hidden]').forEach((li) => { li.hidden = false; });
+        newsMoreBtn.hidden = true;
+      }, { once: true });
+    }
+  }
+
   /* ---------- Gallery ---------- */
   const tabsEl = document.getElementById('tabs');
   const chaptersEl = document.getElementById('chapters');

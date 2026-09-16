@@ -498,6 +498,91 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ==========================================================================
+   News strip
+   ========================================================================== */
+
+.news-sec {
+  padding: clamp(40px, 6vw, 64px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.news-sec__head { margin-bottom: 24px; }
+
+.news-sec__title {
+  margin: 0;
+  font-family: var(--px);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-item {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: clamp(12px, 3vw, 32px);
+  padding: 16px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.news-item:first-child { border-top: 0; }
+
+.news-item[hidden] { display: none; }
+
+.news-item__date {
+  padding-top: 3px;
+  font-family: var(--px);
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--ink-mid);
+}
+
+.news-item__title {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.news-item__title a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s var(--ease);
+}
+
+.news-item__title a:hover { border-color: currentColor; }
+
+.news-item__body {
+  margin: 0;
+  color: var(--ink-mid);
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+.news-more {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-mid);
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: .03em;
+  cursor: pointer;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+
+.news-more:hover { border-color: var(--orange); color: var(--ink); }
+.news-more[hidden] { display: none; }
+
+/* ==========================================================================
    Section shell
    ========================================================================== */
 
@@ -1954,6 +2039,9 @@ p:last-child { margin-bottom: 0; }
   html { scroll-padding-top: 74px; }
 
   .nav { padding: 12px 18px; }
+
+  .news-item { grid-template-columns: 1fr; gap: 6px; }
+  .news-item__date { padding-top: 0; }
 
   .signalcard { flex-direction: column; text-align: center; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }

@@ -19,29 +19,33 @@ Official website source for the brand. Deployed with GitHub Pages.
 ├── index.html
 ├── .nojekyll
 ├── scripts/
-│   └── build-gallery.py    Scan chapter folders → generate gallery-data.js
+│   └── build-gallery.py    Scan chapter/news folders → generate *-data.js
 ├── assets/
 │   ├── css/style.css
 │   ├── img/
 │   └── js/
 │       ├── gallery-data.js   Auto-generated (do not edit by hand)
+│       ├── news-data.js      Auto-generated (do not edit by hand)
 │       └── main.js
-└── chapter/
-    ├── ch1/
-    │   ├── name.txt        Chapter name
-    │   ├── front.PNG       Prologue image (optional)
-    │   ├── front.txt       Prologue story note (optional)
-    │   ├── ep01.PNG        Episode image
-    │   ├── ep01.txt        Episode story note
-    │   ├── back.PNG        Epilogue image (optional)
-    │   ├── back.txt        Epilogue story note (optional)
-    │   └── ...
-    ├── ch2/
-    └── ch3/                (hidden on the site until images are added)
-└── companion/
-    ├── companion.jpg       Companion Feely portrait (artist col 3)
-    ├── companion_img.jpg   Artist carrying Feely (artist col 4)
-    └── companion.txt       Companion story note (optional)
+├── chapter/
+│   ├── ch1/
+│   │   ├── name.txt        Chapter name
+│   │   ├── front.PNG       Prologue image (optional)
+│   │   ├── front.txt       Prologue story note (optional)
+│   │   ├── ep01.PNG        Episode image
+│   │   ├── ep01_2.PNG      Side/angle image of ep01 (optional)
+│   │   ├── ep01.txt        Episode story note
+│   │   ├── back.PNG        Epilogue image (optional)
+│   │   ├── back.txt        Epilogue story note (optional)
+│   │   └── ...
+│   ├── ch2/
+│   └── ch3/                (hidden on the site until images are added)
+├── companion/
+│   ├── companion.jpg       Companion Feely portrait (artist col 3)
+│   ├── companion_img.jpg   Artist carrying Feely (artist col 4)
+│   └── companion.txt       Companion story note (optional)
+└── news/
+    └── 2026-09-26-on-a-whim.txt   One file per news item
 ```
 
 ---
@@ -118,6 +122,33 @@ When those files exist, the artist section becomes **4 columns**:
 4. `companion_img.jpg` on-the-road photo
 
 Not listed in The Journey gallery.
+
+---
+
+## News
+
+Shown right below the hero, before "Who is Feely?". Add one file per item:
+
+```
+news/2026-09-26-on-a-whim.txt
+```
+
+```
+title: Feely selected for "On a Whim"
+date: 2026-09-26
+link: https://www.instagram.com/p/DcRxjAPkj3S/
+---
+Feely has been selected for the group exhibition "On a Whim" at
+6M Community Arts in San Francisco, on view September 26 through
+October 26.
+```
+
+- `title` / `date` / `link` go above the `---` line; `link` is optional.
+- Everything after `---` is the body text.
+- Sorted newest first by `date` (filename breaks ties). Only the latest 10
+  items are shown on the site; the first 4 are visible by default, the rest
+  appear after clicking "More news".
+- Run `python scripts/build-gallery.py` to regenerate `assets/js/news-data.js`.
 
 ---
 

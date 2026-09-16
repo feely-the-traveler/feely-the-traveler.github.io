@@ -34,6 +34,7 @@
   </a>
 
   <nav class="nav__links" aria-label="Sections">
+    <a href="#news">News</a>
     <a href="#who">Who</a>
     <a href="#philosophy">Philosophy</a>
     <a href="#design">Design</a>
@@ -69,6 +70,7 @@
   </button>
 
   <div class="nav__mobile" id="navMobile">
+    <a href="#news">News</a>
     <a href="#who">Who</a>
     <a href="#philosophy">Philosophy</a>
     <a href="#design">Design</a>
@@ -125,6 +127,18 @@
   <a class="hero__scroll" href="#who" aria-label="Scroll down">
     <span></span>
   </a>
+</section>
+
+
+<!-- ============ NEWS ============ -->
+<section class="news-sec" id="news">
+  <div class="wrap">
+    <div class="news-sec__head reveal">
+      <h2 class="news-sec__title">News</h2>
+    </div>
+    <ul class="news-list" id="newsList"></ul>
+    <button class="news-more" id="newsMore" type="button" hidden>More news</button>
+  </div>
 </section>
 
 
@@ -555,6 +569,7 @@
   </div>
 </div>
 
+<script src="assets/js/news-data.js"></script>
 <script src="assets/js/gallery-data.js"></script>
 <script src="assets/js/main.js"></script>
 </body>

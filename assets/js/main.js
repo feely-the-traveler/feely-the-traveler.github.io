@@ -102,16 +102,7 @@
 
       const title = document.createElement('h3');
       title.className = 'news-item__title';
-      if (item.link) {
-        const a = document.createElement('a');
-        a.href = item.link;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.textContent = item.title;
-        title.appendChild(a);
-      } else {
-        title.textContent = item.title;
-      }
+      title.textContent = item.title;
       body.appendChild(title);
 
       if (item.body) {
@@ -119,6 +110,16 @@
         p.className = 'news-item__body';
         p.textContent = item.body;
         body.appendChild(p);
+      }
+
+      if (item.link) {
+        const a = document.createElement('a');
+        a.className = 'news-item__link';
+        a.href = item.link;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'View post ↗';
+        body.appendChild(a);
       }
 
       li.appendChild(body);

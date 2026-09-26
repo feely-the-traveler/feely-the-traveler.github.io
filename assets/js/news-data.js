@@ -14,6 +14,6 @@
  */
 
 const NEWS = [
-  { date: "2026-10-02", title: "Feely joins \"Blooming Into Being\" in South San Francisco", link: "https://www.instagram.com/p/DdZsxOXmJ4-/", body: "Feely is showing at the City of South San Francisco Cultural Arts Program's \"Blooming Into Being\" exhibition at the Library | Parks and Recreation Center, 3rd Floor Gallery, Room 321. Opening weekend: Friday, October 2, 6-8pm and Saturday, October 3, 10am-3pm." },
+  { date: "2026-10-02", title: "Feely joins \"Blooming Into Being\" in South San Francisco", link: "https://www.instagram.com/p/DdZsxOXmJ4-/", body: "Feely is showing at the City of South San Francisco Cultural Arts Program's \"Blooming Into Being\" exhibition at the Library | Parks and Recreation Center, 3rd Floor Gallery, Room 321. Opening weekend: Friday, October 2 and Saturday, October 3." },
   { date: "2026-09-26", title: "Feely selected for \"On a Whim\"", link: "https://www.instagram.com/p/DcRxjAPkj3S/", body: "Feely has been selected for the group exhibition \"On a Whim\" at 6M Community Arts in San Francisco, on view September 26 through October 26." }
 ];

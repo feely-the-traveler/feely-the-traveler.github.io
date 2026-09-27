@@ -34,12 +34,14 @@
   </a>
 
   <nav class="nav__links" aria-label="Sections">
+    <a href="#top">Home</a>
     <a href="#news">News</a>
     <a href="#who">Who</a>
     <a href="#philosophy">Philosophy</a>
     <a href="#design">Design</a>
     <a href="#behind">Behind</a>
     <a href="#journey">Journey</a>
+    <a href="#exhibitions">Exhibitions</a>
   </nav>
 
   <div class="nav__cta">
@@ -70,12 +72,14 @@
   </button>
 
   <div class="nav__mobile" id="navMobile">
+    <a href="#top">Home</a>
     <a href="#news">News</a>
     <a href="#who">Who</a>
     <a href="#philosophy">Philosophy</a>
     <a href="#design">Design</a>
     <a href="#behind">Behind</a>
     <a href="#journey">Journey</a>
+    <a href="#exhibitions">Exhibitions</a>
   </div>
 </header>
 
@@ -137,7 +141,11 @@
       <h2 class="news-sec__title">News</h2>
     </div>
     <ul class="news-list" id="newsList"></ul>
-    <button class="news-more" id="newsMore" type="button" hidden>More news</button>
+    <div class="pager" id="newsPager" hidden>
+      <button class="pager__btn" id="newsPrev" type="button" aria-label="Previous page">&#8249;</button>
+      <span class="pager__status" id="newsPagerStatus"></span>
+      <button class="pager__btn" id="newsNext" type="button" aria-label="Next page">&#8250;</button>
+    </div>
   </div>
 </section>
 
@@ -511,6 +519,23 @@
 </section>
 
 
+<!-- ============ EXHIBITIONS ============ -->
+<section class="sec sec--alt" id="exhibitions">
+  <div class="wrap">
+    <div class="sechead sechead--plain reveal">
+      <h2 class="sechead__title">Exhibitions</h2>
+      <p class="sechead__sub">Places Feely has traveled to be seen.</p>
+    </div>
+    <div class="exhibit-grid" id="exhibits"></div>
+    <div class="pager" id="exhibitsPager" hidden>
+      <button class="pager__btn" id="exhibitsPrev" type="button" aria-label="Previous page">&#8249;</button>
+      <span class="pager__status" id="exhibitsPagerStatus"></span>
+      <button class="pager__btn" id="exhibitsNext" type="button" aria-label="Next page">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+
 <!-- ============ ARTIST ============ -->
 <section class="artist">
   <div class="wrap">
@@ -563,14 +588,17 @@
 
     <aside class="lb__story" id="lbStory">
       <p class="lb__meta" id="lbMeta"></p>
+      <p class="lb__submeta" id="lbSubmeta" hidden></p>
       <p class="lb__emotion" id="lbEmotion" hidden></p>
       <blockquote class="lb__note" id="lbNote"></blockquote>
+      <a class="lb__link" id="lbLink" target="_blank" rel="noopener" hidden>View post ↗</a>
     </aside>
   </div>
 </div>
 
 <script src="assets/js/news-data.js"></script>
 <script src="assets/js/gallery-data.js"></script>
+<script src="assets/js/exhibits-data.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

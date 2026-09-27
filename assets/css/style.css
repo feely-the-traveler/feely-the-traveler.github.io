@@ -569,22 +569,41 @@ p:last-child { margin-bottom: 0; }
 
 .news-item__link:hover { border-color: currentColor; }
 
-.news-more {
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   margin-top: 20px;
-  padding: 10px 20px;
+}
+
+.pager[hidden] { display: none; }
+
+.pager__btn {
+  width: 36px; height: 36px;
+  display: grid;
+  place-items: center;
   background: none;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 3px;
   color: var(--ink-mid);
-  font-family: var(--sans);
-  font-size: .85rem;
-  letter-spacing: .03em;
+  font-size: 18px;
+  line-height: 1;
   cursor: pointer;
   transition: border-color .2s var(--ease), color .2s var(--ease);
 }
 
-.news-more:hover { border-color: var(--orange); color: var(--ink); }
-.news-more[hidden] { display: none; }
+.pager__btn:hover:not(:disabled) { border-color: var(--orange); color: var(--ink); }
+.pager__btn:disabled { opacity: .35; cursor: default; }
+
+.pager__status {
+  font-family: var(--px);
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--ink-dim);
+  min-width: 54px;
+  text-align: center;
+}
 
 /* ==========================================================================
    Section shell
@@ -1568,6 +1587,83 @@ p:last-child { margin-bottom: 0; }
 }
 
 /* ==========================================================================
+   Exhibitions
+   ========================================================================== */
+
+.exhibit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.excard {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 0;
+  text-align: left;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+}
+
+.excard:hover {
+  transform: translateY(-6px);
+  border-color: #35353f;
+  box-shadow: 0 24px 44px -22px rgba(0, 0, 0, .9);
+}
+
+.excard__imgwrap {
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.excard__imgwrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+
+.excard:hover .excard__imgwrap img { transform: scale(1.06); }
+
+.excard__title {
+  position: absolute;
+  left: 10px; top: 10px; right: 10px;
+  padding: 5px 9px;
+  background: rgba(8, 8, 13, .82);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ink);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.excard__body {
+  padding: 16px 18px 18px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.excard__meta {
+  display: block;
+  font-size: .86rem;
+  color: var(--ink-dim);
+}
+
+/* ==========================================================================
    Artist signature
    ========================================================================== */
 
@@ -1832,6 +1928,15 @@ p:last-child { margin-bottom: 0; }
   color: var(--orange);
 }
 
+.lb__submeta {
+  margin: -.4rem 0 1.2rem;
+  font-family: var(--sans);
+  font-size: .92rem;
+  color: var(--ink-mid);
+}
+
+.lb__submeta[hidden] { display: none; }
+
 .lb__emotion {
   margin: 0 0 1.2rem;
   font-family: var(--sans);
@@ -1857,6 +1962,20 @@ p:last-child { margin-bottom: 0; }
 }
 
 .lb__note[hidden] { display: none; }
+
+.lb__link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  color: var(--orange);
+  font-family: var(--sans);
+  font-size: .9rem;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s var(--ease);
+}
+
+.lb__link:hover { border-color: currentColor; }
+.lb__link[hidden] { display: none; }
 
 .lb__close,
 .lb__nav {
@@ -2036,6 +2155,7 @@ p:last-child { margin-bottom: 0; }
   }
 
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .exhibit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 }
 
 @media (max-width: 640px) {
@@ -2049,6 +2169,7 @@ p:last-child { margin-bottom: 0; }
 
   .signalcard { flex-direction: column; text-align: center; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .exhibit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .artist__row--companion { grid-template-columns: 1fr; }
   .artist__companion-group { grid-template-columns: 1fr; }
   .hero__signalnote { flex-direction: column; align-items: flex-start; }

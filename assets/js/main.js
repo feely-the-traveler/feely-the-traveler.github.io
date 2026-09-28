@@ -303,17 +303,10 @@
         card.type = 'button';
         card.dataset.index = start + i;
 
-        const when = formatExhibitRange(ex.date, ex.end);
-        const subParts = [when, ex.location].filter(Boolean);
-
         card.innerHTML =
           '<span class="excard__imgwrap">' +
-            '<span class="excard__title">' + ex.title + '</span>' +
             '<img src="' + ex.images[0] + '" alt="' + ex.title + '" loading="lazy">' +
-          '</span>' +
-          (subParts.length
-            ? '<span class="excard__body"><span class="excard__meta">' + subParts.join(' · ') + '</span></span>'
-            : '');
+          '</span>';
 
         exhibitsEl.appendChild(card);
       });

@@ -18,5 +18,6 @@
  */
 
 const EXHIBITS = [
+  { id: "00002", title: "City of South San Francisco October Art Show", date: "2026-10-02", end: "2026-10-30", location: "Library | Parks and Recreation Center, 3rd Floor Gallery, Room 321, South San Francisco", link: "https://www.instagram.com/p/DeEB8K6pTkS/", images: ["exhibit/00002/pic1.jpg", "exhibit/00002/pic2.jpg", "exhibit/00002/pic3.jpg", "exhibit/00002/pic4.jpg"], note: "Chapter 2 \"A New Journey\" - Episodes 2, 4, and 5 - now on the wall at the City of South San Francisco October Art Show.\n\nThe show runs through October 30, so come say hi to Feely if you're in the Bay.\n\n@ssflibrary" },
   { id: "00001", title: "On A Whim!", date: "2026-09-26", end: "2026-10-24", location: "6M Community Art building, South San Francisco", link: "https://www.instagram.com/p/DduQPgVk1Uq/?img_index=1", images: ["exhibit/00001/pic1.jpg", "exhibit/00001/pic2.jpg", "exhibit/00001/pic3.jpg"], note: "" }
 ];

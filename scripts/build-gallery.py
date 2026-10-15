@@ -25,6 +25,14 @@ companion/
   companion_img.png / .jpg how the artist carries Feely (optional)
   companion.txt            companion story note (optional)
 
+special/
+  artwork-name/            one folder per special work, from any chapter
+    front.jpg              cover image (required)
+    right.jpg / left.jpg / side.jpg   optional additional views
+    content.txt            title: / chapter: headers, "---", optional story
+
+Special works and Companion Feely share the Journey's Special tab.
+
 news/
   YYYY-MM-DD-slug.txt      one file per news item, e.g. shows, press, awards.
                            title: / date: / link: header fields, then a
@@ -248,6 +256,55 @@ def scan_companion() -> dict | None:
     }
 
 
+def scan_special_gallery(companion: dict | None) -> dict | None:
+    works = []
+    base = ROOT / "special"
+    if base.is_dir():
+        for folder in sorted(base.iterdir()):
+            if not folder.is_dir():
+                continue
+            front = find_image(folder, "front")
+            if not front:
+                continue
+            extras = [
+                image for stem in ("right", "left", "side")
+                if (image := find_image(folder, stem)) is not None
+            ]
+            meta, note = read_meta_body(folder / "content.txt")
+            work = make_work(
+                folder, front, note, meta.get("title") or folder.name,
+                extra_images=extras,
+            )
+            work["context"] = " · ".join(filter(None, [meta.get("chapter"), "Special"]))
+            works.append(work)
+
+    if companion:
+        images = [companion[key] for key in ("file", "img") if companion.get(key)]
+        if images:
+            works.insert(0, {
+                "file": images[0],
+                "images": images,
+                "tag": "Companion Feely",
+                "emotion": "",
+                "primary": "",
+                "support": ["", ""],
+                "note": companion["note"],
+                "context": "Chapter 1 · Special · Not for sale",
+            })
+
+    if not works:
+        return None
+    for number, work in enumerate(works, start=1):
+        work["title"] = work["tag"]
+        work["tag"] = f"Special {number:02d}"
+    return {
+        "id": "special",
+        "label": "Special",
+        "title": "",
+        "works": works,
+    }
+
+
 def scan_news() -> list[dict]:
     folder = ROOT / "news"
     if not folder.is_dir():
@@ -339,6 +396,11 @@ def render(chapters: list[dict], companion: dict | None) -> str:
         " *   companion_img.png / .jpg   how the artist carries Feely",
         " *   companion.txt              story note (optional)",
         " *",
+        " * Special tab: special/<artwork-name>/front.jpg, optional",
+        " * right.jpg / left.jpg / side.jpg, and content.txt with",
+        " * title: / chapter: headers, then --- and an optional story.",
+        " * Companion Feely is included from companion/ without copying files.",
+        " *",
         " * Then run:  python scripts/build-gallery.py",
         " */",
         "",
@@ -355,6 +417,8 @@ def render(chapters: list[dict], companion: dict | None) -> str:
             comma = "," if j < len(ch["works"]) - 1 else ""
             support = json.dumps(work["support"], ensure_ascii=False)
             images = json.dumps(work.get("images", [work["file"]]), ensure_ascii=False)
+            context = f", context: {js_string(work['context'])}" if work.get("context") else ""
+            title = f", title: {js_string(work['title'])}" if work.get("title") else ""
             lines.append(
                 "      { "
                 f"file: {js_string(work['file'])}, "
@@ -363,7 +427,7 @@ def render(chapters: list[dict], companion: dict | None) -> str:
                 f"emotion: {js_string(work['emotion'])}, "
                 f"primary: {js_string(work['primary'])}, "
                 f"support: {support}, "
-                f"note: {js_string(work['note'])} "
+                f"note: {js_string(work['note'])}{context}{title} "
                 f"}}{comma}"
             )
         lines.append("    ]")
@@ -481,14 +545,18 @@ def main() -> None:
 
     chapters.sort(key=lambda c: c["num"])
     companion = scan_companion()
+    special = scan_special_gallery(companion)
+    gallery = chapters + ([special] if special else [])
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(chapters, companion), encoding="utf-8")
+    OUT.write_text(render(gallery, companion), encoding="utf-8")
 
     total = sum(len(c["works"]) for c in chapters)
     print(f"Wrote {OUT.relative_to(ROOT)} - {len(chapters)} chapters, {total} works")
     for c in chapters:
         label = c["label"].encode("ascii", "backslashreplace").decode("ascii")
         print(f"  {c['id']}: {label} ({len(c['works'])})")
+    if special:
+        print(f"  special: {len(special['works'])} works (including companion)")
     if companion:
         bits = []
         if companion.get("file"):

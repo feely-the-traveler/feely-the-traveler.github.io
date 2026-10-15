@@ -18,6 +18,11 @@
  *   companion_img.png / .jpg   how the artist carries Feely
  *   companion.txt              story note (optional)
  *
+ * Special tab: special/<artwork-name>/front.jpg, optional
+ * right.jpg / left.jpg / side.jpg, and content.txt with
+ * title: / chapter: headers, then --- and an optional story.
+ * Companion Feely is included from companion/ without copying files.
+ *
  * Then run:  python scripts/build-gallery.py
  */
 
@@ -52,6 +57,15 @@ const GALLERY = [
       { file: "chapter/ch2/ep07.jpg", images: ["chapter/ch2/ep07.jpg", "chapter/ch2/ep07_2.jpg", "chapter/ch2/ep07_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...A new beginning\ndoesn't always need a new me.\n\nI've spent so much time\nlooking at others,\nwishing I were more like them.\n\nBut the people who love me\nnever asked me to be anyone else.\n\nMaybe I can learn\nto see myself that way too.\n\nMaybe starting again\nisn't about becoming someone new.\n\nMaybe it's another chance\nto become a little more like myself...\"" },
       { file: "chapter/ch2/ep08.jpg", images: ["chapter/ch2/ep08.jpg", "chapter/ch2/ep08_2.jpg", "chapter/ch2/ep08_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...Halloween feels different this year.\n\nWatching someone I love\nget excited about the little things\nmakes me feel it too.\n\nFor a moment,\nthe world feels new again.\n\nAnd somehow,\nhome feels a little more like forever...\"" },
       { file: "chapter/ch2/ep09.jpg", images: ["chapter/ch2/ep09.jpg", "chapter/ch2/ep09_2.jpg", "chapter/ch2/ep09_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I've been trying a lot of new things lately.\nSome work.\nSome don't.\nBut somewhere along the way,\nI realized I'm having fun.\nMaybe a new journey\ndoesn't always need to lead somewhere.\nSometimes,\nit's just fun to see where it goes...\"" }
+    ]
+  },
+  {
+    id: "special",
+    label: "Special",
+    title: "",
+    works: [
+      { file: "companion/companion.jpg", images: ["companion/companion.jpg", "companion/companion_img.jpg"], tag: "Special 01", emotion: "", primary: "", support: ["", ""], note: "\"...You ride along in a clear little pouch, wherever I go.\nI can't explain it, but good things seem to happen when you're with me.\nMaybe it's luck. Maybe it's just not carrying the day alone.\nEither way, I feel steadier with you close by....\"", context: "Chapter 1 · Special · Not for sale", title: "Companion Feely" },
+      { file: "special/ch2-special01/front.jpg", images: ["special/ch2-special01/front.jpg", "special/ch2-special01/right.jpg", "special/ch2-special01/left.jpg", "special/ch2-special01/side.jpg"], tag: "Special 02", emotion: "", primary: "", support: ["", ""], note: "\"...Funny how the little pieces\nI thought were left over\nsomehow found their place.\nThe happy ones.\nThe difficult ones.\nAnd everything in between.\nI don't need to leave any of them behind.\nI can hold them all\nand carry them with me\ninto whatever comes next...\"", context: "Chapter 2 · Special", title: "Special 02" }
     ]
   }
 ];

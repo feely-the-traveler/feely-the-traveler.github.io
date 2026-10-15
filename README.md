@@ -19,7 +19,7 @@ Official website source for the brand. Deployed with GitHub Pages.
 ├── index.html
 ├── .nojekyll
 ├── scripts/
-│   └── build-gallery.py    Scan chapter/news folders → generate *-data.js
+│   └── build-gallery.py    Scan content folders → generate *-data.js
 ├── assets/
 │   ├── css/style.css
 │   ├── img/
@@ -44,6 +44,13 @@ Official website source for the brand. Deployed with GitHub Pages.
 │   ├── companion.jpg       Companion Feely portrait (artist col 3)
 │   ├── companion_img.jpg   Artist carrying Feely (artist col 4)
 │   └── companion.txt       Companion story note (optional)
+├── special/
+│   └── ch2-special01/
+│       ├── front.jpg       Cover image
+│       ├── right.jpg       Optional additional view
+│       ├── left.jpg        Optional additional view
+│       ├── side.jpg        Optional additional view
+│       └── content.txt     Title, chapter, optional story
 └── news/
     └── 2026-09-26-on-a-whim.txt   One file per news item
 ```
@@ -87,7 +94,8 @@ For auto-rebuild while developing:
 python scripts/watch-gallery.py
 ```
 
-Changes under `chapter/ch*` will regenerate `gallery-data.js` automatically.
+Changes under `chapter/`, `special/`, and `companion/` will regenerate
+`gallery-data.js` automatically.
 
 ### Rules
 
@@ -121,7 +129,51 @@ When those files exist, the artist section becomes **4 columns**:
 3. `companion.jpg` portrait
 4. `companion_img.jpg` on-the-road photo
 
-Not listed in The Journey gallery.
+Also listed in The Journey's **Special** tab, with both photos and the same
+story note. The gallery identifies it as **Chapter 1 · Special · Not for sale**. The artist
+section stays unchanged; no image or story files need to be copied.
+
+### Special works (The Journey → Special)
+
+The Journey has **Chapter 1**, **Chapter 2**, …, and **Special** tabs.
+Special works from every chapter share the Special tab, using the same
+three-column desktop grid, two-column mobile grid, and click-to-enlarge
+viewer as regular works. **View all** includes Special too.
+
+Add one folder per work; keep its folder name unique across chapters:
+
+```
+special/ch2-special01/
+  front.jpg       Cover image (required)
+  right.jpg       Optional
+  left.jpg        Optional
+  side.jpg        Optional
+  content.txt
+```
+
+`content.txt` uses this format:
+
+```
+title: Special 02
+chapter: Chapter 2
+---
+Optional story text, preserving line breaks.
+```
+
+- `title` is the work's name, shown in the enlarged viewer; defaults to the
+  folder name if omitted. Numbered photo badges are generated separately.
+- `chapter` is an optional label, not a filter. A Chapter 3 special still
+  appears in the same Special tab.
+- Only folders with a `front` image are included. The same image formats
+  as chapter works are supported; original filenames/casing are preserved.
+- Images appear in **front → right → left → side** order. Additional views
+  become clickable thumbnails in the enlarged viewer.
+- Companion Feely from `companion/` appears first as **Special 01**.
+  Other works follow in folder-name order as **Special 02**, **Special 03**,
+  and so on. Folder names do not need to match these gallery-wide numbers.
+  The Special tab is hidden when neither has any works.
+- Run `python scripts/build-gallery.py` and include the updated
+  `assets/js/gallery-data.js` with your images when committing.
 
 ---
 
@@ -160,13 +212,19 @@ python -m http.server 8000
 
 http://localhost:8000
 
+### Gallery data checks
+
+```powershell
+python -m unittest discover -s scripts -p "test_*.py"
+```
+
 ---
 
 ## Deploy
 
 Workflow:
 
-1. Add or edit works under `chapter/`
+1. Add or edit works under `chapter/`, `special/`, or `companion/`
 2. Run `python scripts/build-gallery.py`
 3. Commit `gallery-data.js` + images, then push to `main`
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Watch ch*/ folders and auto-run build-gallery.py on changes.
+Watch gallery content folders and auto-run build-gallery.py on changes.
 Useful while developing locally (before / without GitHub Actions).
 
   python scripts/watch-gallery.py
@@ -20,7 +20,7 @@ POLL_SEC = 1.0
 
 def snapshot() -> dict[str, float]:
     state: dict[str, float] = {}
-    roots = [ROOT / "chapter", ROOT / "companion"]
+    roots = [ROOT / name for name in ("chapter", "special", "companion")]
     for chapter_root in roots:
         if not chapter_root.is_dir():
             continue
@@ -39,7 +39,7 @@ def build() -> None:
 
 
 def main() -> None:
-    print(f"[watch] watching chapter/ch* and companion/  (Ctrl+C to stop)")
+    print("[watch] watching chapter/, special/ and companion/  (Ctrl+C to stop)")
     build()
     prev = snapshot()
     try:

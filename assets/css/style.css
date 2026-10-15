@@ -1553,6 +1553,8 @@ p:last-child { margin-bottom: 0; }
 .tile__ep {
   position: absolute;
   left: 10px; top: 10px;
+  max-width: calc(100% - 20px);
+  overflow-wrap: anywhere;
   padding: 5px 9px;
   background: rgba(8, 8, 13, .82);
   border: 1px solid var(--line);
@@ -1565,6 +1567,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .tile__meta {
+  display: block;
   padding: 16px 18px 18px;
   border-top: 1px solid var(--line-soft);
 }

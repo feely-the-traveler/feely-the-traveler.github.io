@@ -164,6 +164,11 @@
     return match ? match[1].toUpperCase() : file;
   };
 
+  const workTitle = (work) => {
+    const label = epLabel(work);
+    return work.title && work.title !== label ? label + ' · ' + work.title : label;
+  };
+
   if (tabsEl && chaptersEl && typeof GALLERY !== 'undefined') {
     const viewAllBtn = document.getElementById('viewAll');
     let viewAll = false;
@@ -202,11 +207,13 @@
 
       const head = document.createElement('div');
       head.className = 'chapter__head';
-      head.innerHTML =
-        '<span class="chapter__label">' + chapter.label +
-        (chapter.title ? '. ' + chapter.title : '') + '</span>' +
-        '<span class="chapter__count">' + chapter.works.length +
-        (chapter.works.length === 1 ? ' piece' : ' pieces') + '</span>';
+      const chapterLabel = document.createElement('span');
+      chapterLabel.className = 'chapter__label';
+      chapterLabel.textContent = chapter.label + (chapter.title ? '. ' + chapter.title : '');
+      const chapterCount = document.createElement('span');
+      chapterCount.className = 'chapter__count';
+      chapterCount.textContent = chapter.works.length + (chapter.works.length === 1 ? ' piece' : ' pieces');
+      head.append(chapterLabel, chapterCount);
       section.appendChild(head);
 
       const grid = document.createElement('div');
@@ -224,24 +231,46 @@
 
         const colors = [work.primary, ...(work.support || [])].filter(Boolean);
 
-        tile.innerHTML =
-          '<span class="tile__imgwrap">' +
-            '<span class="tile__ep">' + label + '</span>' +
-            '<img src="' + work.file + '" alt="' +
-              (work.emotion ? work.emotion + ' — ' : '') +
-              chapter.label + ' ' + label +
-              ' by Feely the Traveler" loading="lazy">' +
-          '</span>' +
-          ((work.emotion || colors.length)
-            ? '<span class="tile__meta">' +
-                (work.emotion ? '<span class="tile__emotion">' + work.emotion + '</span>' : '') +
-                (colors.length
-                  ? '<span class="tile__dots">' +
-                      colors.map((c) => '<span style="background:' + c + '"></span>').join('') +
-                    '</span>'
-                  : '') +
-              '</span>'
-            : '');
+        const imageWrap = document.createElement('span');
+        imageWrap.className = 'tile__imgwrap';
+        const badge = document.createElement('span');
+        badge.className = 'tile__ep';
+        badge.textContent = label;
+        const image = document.createElement('img');
+        image.src = work.file;
+        image.alt = (work.emotion ? work.emotion + ' — ' : '') +
+          chapter.label + ' ' + workTitle(work) + ' by Feely the Traveler';
+        image.loading = 'lazy';
+        imageWrap.append(badge, image);
+        tile.appendChild(imageWrap);
+
+        if (work.emotion || colors.length || work.context) {
+          const meta = document.createElement('span');
+          meta.className = 'tile__meta';
+          if (work.emotion) {
+            const emotion = document.createElement('span');
+            emotion.className = 'tile__emotion';
+            emotion.textContent = work.emotion;
+            meta.appendChild(emotion);
+          }
+          if (work.context) {
+            const context = document.createElement('span');
+            context.className = 'tile__note';
+            context.textContent = work.context;
+            meta.appendChild(context);
+          }
+          if (colors.length) {
+            const dots = document.createElement('span');
+            dots.className = 'tile__dots';
+            colors.forEach((color) => {
+              const dot = document.createElement('span');
+              dot.style.background = color;
+              dots.appendChild(dot);
+            });
+            meta.appendChild(dots);
+          }
+          tile.appendChild(meta);
+        }
 
         grid.appendChild(tile);
       });
@@ -359,7 +388,7 @@
     const images = item.images && item.images.length ? item.images : [item.file];
     const alt = activeKind === 'exhibit'
       ? item.title
-      : (item.emotion ? item.emotion + ' — ' : '') + item.chapter + ' ' + item.ep;
+      : (item.emotion ? item.emotion + ' — ' : '') + item.chapter + ' ' + workTitle(item);
 
     lbThumbs.replaceChildren();
     if (images.length > 1) {
@@ -407,9 +436,9 @@
         lbLink.removeAttribute('href');
       }
     } else {
-      lbMeta.textContent = item.chapter + ' · ' + item.ep;
-      lbSubmeta.hidden = true;
-      lbSubmeta.textContent = '';
+      lbMeta.textContent = item.context ? workTitle(item) : item.chapter + ' · ' + item.ep;
+      lbSubmeta.hidden = !item.context;
+      lbSubmeta.textContent = item.context || '';
       lbLink.hidden = true;
       lbLink.removeAttribute('href');
 

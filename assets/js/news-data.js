@@ -14,7 +14,7 @@
  */
 
 const NEWS = [
-  { date: "2026-11-01", title: "Feely now on view at Nirvana Soul Downtown", link: "", body: "Feely is now on display at Nirvana Soul Coffee in downtown San Jose (315 S 1st St, San Jose, CA 95113). Seven pieces now hang on the café wall. Stop by for a coffee and say hello." },
+  { date: "2026-11-01", title: "Feely now on view at Nirvana Soul Downtown", link: "https://www.instagram.com/p/DfOsn6_mzAX/?img_index=1", body: "Feely is now on display at Nirvana Soul Coffee in downtown San Jose (315 S 1st St, San Jose, CA 95113). Seven pieces now hang on the café wall. Stop by for a coffee and say hello." },
   { date: "2026-10-02", title: "Feely joins \"Blooming Into Being\" in South San Francisco", link: "https://www.instagram.com/p/DdZsxOXmJ4-/", body: "Feely is showing at the City of South San Francisco Cultural Arts Program's \"Blooming Into Being\" exhibition at the Library | Parks and Recreation Center, 3rd Floor Gallery, Room 321. Opening weekend: Friday, October 2 and Saturday, October 3." },
   { date: "2026-09-26", title: "Feely selected for \"On a Whim\"", link: "https://www.instagram.com/p/DcRxjAPkj3S/", body: "Feely has been selected for the group exhibition \"On a Whim\" at 6M Community Arts in San Francisco, on view September 26 through October 26." }
 ];

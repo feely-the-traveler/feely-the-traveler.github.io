@@ -18,7 +18,7 @@
  */
 
 const EXHIBITS = [
-  { id: "00003", title: "Nirvana Soul Downtown", date: "2026-11-01", end: "", location: "Nirvana Soul Coffee, 315 S 1st St, San Jose, CA 95113", link: "", images: ["exhibit/00003/pic1.jpg", "exhibit/00003/pic2.jpg", "exhibit/00003/pic3.jpg", "exhibit/00003/pic4.jpg", "exhibit/00003/pic5.jpg", "exhibit/00003/pic6.jpg", "exhibit/00003/pic7.jpg"], note: "" },
+  { id: "00003", title: "Nirvana Soul Downtown", date: "2026-11-01", end: "", location: "Nirvana Soul Coffee, 315 S 1st St, San Jose, CA 95113", link: "https://www.instagram.com/p/DfOr5A8hKaL/", images: ["exhibit/00003/pic1.jpg", "exhibit/00003/pic2.jpg", "exhibit/00003/pic3.jpg", "exhibit/00003/pic4.jpg", "exhibit/00003/pic5.jpg", "exhibit/00003/pic6.jpg", "exhibit/00003/pic7.jpg"], note: "" },
   { id: "00002", title: "Blooming into Being", date: "2026-10-02", end: "2026-10-30", location: "South San Francisco Public Library", link: "https://www.instagram.com/p/DeEB8K6pTkS/", images: ["exhibit/00002/pic1.jpg", "exhibit/00002/pic2.jpg", "exhibit/00002/pic3.jpg", "exhibit/00002/pic4.jpg"], note: "" },
   { id: "00001", title: "On A Whim!", date: "2026-09-26", end: "2026-10-24", location: "6M Community Art building, South San Francisco", link: "https://www.instagram.com/p/DduQPgVk1Uq/?img_index=1", images: ["exhibit/00001/pic1.jpg", "exhibit/00001/pic2.jpg", "exhibit/00001/pic3.jpg"], note: "" }
 ];

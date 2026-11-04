@@ -8,7 +8,6 @@ Official website source for the brand. Deployed with GitHub Pages.
 - Repository: `feely-the-traveler.github.io`
 - Public URL: https://feely-the-traveler.github.io
 - Instagram: https://www.instagram.com/feely_the_traveler/
-- Shop: https://thedropmuse.com/artist/feely_the_traveler
 
 ---
 

@@ -60,6 +60,14 @@ const GALLERY = [
     ]
   },
   {
+    id: "ch3",
+    label: "Chapter 3",
+    title: "When Good Things Happen",
+    works: [
+      { file: "chapter/ch3/ep01.jpg", images: ["chapter/ch3/ep01.jpg", "chapter/ch3/ep01_2.jpg", "chapter/ch3/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I've worked so hard,\nand worried even more.\n\nBut somehow,\nthings turned out better than I hoped.\n\nI thought I'd be jumping with joy.\nInstead, I just let out a long sigh of relief.\n\nFor the people who helped me,\nand the little bit of luck along the way,\n\nI feel nothing but gratitude.\n\nMaybe today,\nI can finally breathe a little easier...\"" }
+    ]
+  },
+  {
     id: "special",
     label: "Special",
     title: "",

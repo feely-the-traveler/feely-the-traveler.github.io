@@ -5,7 +5,11 @@
 
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) {
+    const startYear = 2026;
+    const thisYear = new Date().getFullYear();
+    yearEl.textContent = thisYear > startYear ? startYear + '–' + thisYear : String(startYear);
+  }
 
   /* ---------- Sticky nav ---------- */
   const nav = document.getElementById('nav');

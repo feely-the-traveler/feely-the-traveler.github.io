@@ -48,6 +48,8 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -137,6 +139,18 @@ def find_note(folder: Path, stem: str) -> str:
     return ""
 
 
+def uploaded_date(path: Path) -> str:
+    """Date the file was first committed; today if it is not committed yet."""
+    try:
+        out = subprocess.run(
+            ["git", "log", "--diff-filter=A", "--format=%ad", "--date=short", "--", str(path)],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        ).stdout.split()
+    except (OSError, subprocess.CalledProcessError):
+        out = []
+    return out[-1] if out else date.today().isoformat()
+
+
 def to_rel(folder: Path, img: Path) -> str:
     rel = (folder.relative_to(ROOT) / img.name).as_posix()
     if CDN_BASE_URL:
@@ -154,6 +168,7 @@ def make_work(folder: Path, img: Path, note: str, tag: str = "", extra_images: l
         "primary": "",
         "support": ["", ""],
         "note": note,
+        "date": uploaded_date(img),
     }
 
 
@@ -253,6 +268,7 @@ def scan_companion() -> dict | None:
         "file": rel_or_empty(portrait),
         "img": rel_or_empty(life),
         "note": find_note(folder, "companion"),
+        "date": uploaded_date(portrait or life),
     }
 
 
@@ -290,6 +306,7 @@ def scan_special_gallery(companion: dict | None) -> dict | None:
                 "support": ["", ""],
                 "note": companion["note"],
                 "context": "Chapter 1 · Special · Not for sale",
+                "date": companion["date"],
             })
 
     if not works:
@@ -419,6 +436,7 @@ def render(chapters: list[dict], companion: dict | None) -> str:
             images = json.dumps(work.get("images", [work["file"]]), ensure_ascii=False)
             context = f", context: {js_string(work['context'])}" if work.get("context") else ""
             title = f", title: {js_string(work['title'])}" if work.get("title") else ""
+            uploaded = f", date: {js_string(work['date'])}" if work.get("date") else ""
             lines.append(
                 "      { "
                 f"file: {js_string(work['file'])}, "
@@ -427,7 +445,7 @@ def render(chapters: list[dict], companion: dict | None) -> str:
                 f"emotion: {js_string(work['emotion'])}, "
                 f"primary: {js_string(work['primary'])}, "
                 f"support: {support}, "
-                f"note: {js_string(work['note'])}{context}{title} "
+                f"note: {js_string(work['note'])}{context}{title}{uploaded} "
                 f"}}{comma}"
             )
         lines.append("    ]")

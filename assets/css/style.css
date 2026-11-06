@@ -1937,6 +1937,16 @@ p:last-child { margin-bottom: 0; }
 
 .lb__note[hidden] { display: none; }
 
+.lb__date {
+  margin: 1.2rem 0 0;
+  font-family: var(--sans);
+  font-size: .85rem;
+  letter-spacing: .08em;
+  color: var(--ink-mid);
+}
+
+.lb__date[hidden] { display: none; }
+
 .lb__link {
   display: inline-block;
   margin-top: 1.2rem;

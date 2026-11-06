@@ -112,6 +112,10 @@ Changes under `chapter/`, `special/`, and `companion/` will regenerate
 
 Only works with an image are included. Notes without an image are skipped.
 
+Each work's date in the enlarged viewer is the day its main image was first
+committed (from git history). Works not yet committed show today's date until
+the next build after committing.
+
 ### Companion Feely (artist section)
 
 ```

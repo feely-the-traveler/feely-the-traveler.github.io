@@ -366,6 +366,7 @@
   const lbSubmeta = document.getElementById('lbSubmeta');
   const lbEmotion = document.getElementById('lbEmotion');
   const lbNote = document.getElementById('lbNote');
+  const lbDate = document.getElementById('lbDate');
   const lbStory = document.getElementById('lbStory');
   const lbLink = document.getElementById('lbLink');
   let current = 0;
@@ -460,6 +461,10 @@
       lbNote.textContent = '';
       lbStory.classList.add('is-empty');
     }
+
+    const uploaded = activeKind === 'exhibit' ? '' : formatExhibitDate(item.date);
+    lbDate.hidden = !uploaded;
+    lbDate.textContent = uploaded;
   };
 
   const open = (i) => {

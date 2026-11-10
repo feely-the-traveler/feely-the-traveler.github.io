@@ -64,7 +64,8 @@ const GALLERY = [
     label: "Chapter 3",
     title: "When Good Things Happen",
     works: [
-      { file: "chapter/ch3/ep01.jpg", images: ["chapter/ch3/ep01.jpg", "chapter/ch3/ep01_2.jpg", "chapter/ch3/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I've worked so hard,\nand worried even more.\n\nBut somehow,\nthings turned out better than I hoped.\n\nI thought I'd be jumping with joy.\nInstead, I just let out a long sigh of relief.\n\nFor the people who helped me,\nand the little bit of luck along the way,\n\nI feel nothing but gratitude.\n\nMaybe today,\nI can finally breathe a little easier...\"", date: "2026-11-04" }
+      { file: "chapter/ch3/ep01.jpg", images: ["chapter/ch3/ep01.jpg", "chapter/ch3/ep01_2.jpg", "chapter/ch3/ep01_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...I've worked so hard,\nand worried even more.\n\nBut somehow,\nthings turned out better than I hoped.\n\nI thought I'd be jumping with joy.\nInstead, I just let out a long sigh of relief.\n\nFor the people who helped me,\nand the little bit of luck along the way,\n\nI feel nothing but gratitude.\n\nMaybe today,\nI can finally breathe a little easier...\"", date: "2026-11-04" },
+      { file: "chapter/ch3/ep02.jpg", images: ["chapter/ch3/ep02.jpg", "chapter/ch3/ep02_2.jpg", "chapter/ch3/ep02_3.jpg"], tag: "", emotion: "", primary: "", support: ["", ""], note: "\"...When something good happens,\nI can't help but wonder.\n\nWas it my hard work?\nOr was I just lucky?\n\nPart of me wants to believe\nI really earned it.\n\nMaybe that's why\nI keep trying a little harder.\n\nNot because I have to prove anything to anyone.\n\nBut because I want to believe\nI can make it happen again...\"", date: "2026-11-10" }
     ]
   },
   {
